@@ -44,11 +44,10 @@ class Position extends ActiveRecord {
             ->asArray()
             ->all();
 
-        $event = new Event(['data' => $this->data]);
         //--- устанавливаем цены в соответствии с курсами валют
-        $this->on(self::FETCH_ALL_POSITION, [new Currency(), 'preparePosition'], $event);
+        $this->on(self::FETCH_ALL_POSITION, [new Currency(), 'preparePosition']);
         //--- добавляем главное фото
-        $this->on(self::FETCH_ALL_POSITION, [new PositionImage(), 'preparePosition'], $event);
+        $this->on(self::FETCH_ALL_POSITION, [new PositionImage(), 'preparePosition']);
         $this->trigger(self::FETCH_ALL_POSITION);
         return $this->data;
     }

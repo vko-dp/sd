@@ -38,8 +38,6 @@ class PositionController extends Controller {
         $tblPosition = new Position();
         $data = $tblPosition->getPosition($pager->limit, $pager->offset, $params);
 
-
-
         return $this->render('index', [
             'positions' => $data,
             'totalCount' => $totalCount,
