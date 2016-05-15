@@ -24,7 +24,7 @@ class Currency extends ActiveRecord {
      */
     function getRates() {
         if(!self::$_rates) {
-            self::$_rates = self::find()
+            self::$_rates = $this->find()
                 ->orderBy('id')
                 ->indexBy('name')
                 ->asArray()

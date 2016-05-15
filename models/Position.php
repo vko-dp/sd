@@ -30,7 +30,7 @@ class Position extends ActiveRecord {
      */
     public function getPosition($limit = 20, $offset = 0, array $params = array()) {
 
-        $query = self::find();
+        $query = $this->find();
         if(isset($params['filter'])) {
             $query->where($params['filter']);
         }
