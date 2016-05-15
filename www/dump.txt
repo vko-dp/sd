@@ -1,0 +1,743 @@
+Array
+(
+    [2241] => Array
+        (
+            [id] => 2241
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1845
+            [name_position] => Смеситель ванна Fiore 006  40к
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 20:35:05
+            [show_up] => yes
+            [min_price_position] => 32.05
+            [price_position] => 1110.5
+            [old_price_position] => 32.05
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 1
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 2896
+                    [sq40] => Array
+                        (
+                            [src] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f7891c4de7ef1333301700.jpeg
+                            [alt] => 
+                            [title] => 
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2242] => Array
+        (
+            [id] => 2242
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1846
+            [name_position] => Смеситель ванна Fiore длин 005
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 20:36:00
+            [show_up] => yes
+            [min_price_position] => 32.05
+            [price_position] => 1110.5
+            [old_price_position] => 32.05
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 1
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 2898
+                    [sq40] => Array
+                        (
+                            [src] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f7891fb6ff461333301755.jpeg
+                            [alt] => 
+                            [title] => 
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2243] => Array
+        (
+            [id] => 2243
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1847
+            [name_position] => Смеситель ванна Foro длин 005 NEW (40)
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 24.82
+            [price_position] => 860
+            [old_price_position] => 24.82
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2244] => Array
+        (
+            [id] => 2244
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1848
+            [name_position] => Смеситель ванна G. Mega 141
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 12.93
+            [price_position] => 448
+            [old_price_position] => 12.93
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2245] => Array
+        (
+            [id] => 2245
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1849
+            [name_position] => Смеситель ванна G. Mega 142
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 16.49
+            [price_position] => 571.5
+            [old_price_position] => 16.49
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2246] => Array
+        (
+            [id] => 2246
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1850
+            [name_position] => Смеситель ванна G. Mega 143
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 16.49
+            [price_position] => 571.5
+            [old_price_position] => 16.49
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2247] => Array
+        (
+            [id] => 2247
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1851
+            [name_position] => Смеситель ванна Givanchy 005 дл.нос NEW
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 25.85
+            [price_position] => 895.5
+            [old_price_position] => 25.85
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2248] => Array
+        (
+            [id] => 2248
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1852
+            [name_position] => Смеситель ванна Givenchy 005
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 25.85
+            [price_position] => 895.5
+            [old_price_position] => 25.85
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2249] => Array
+        (
+            [id] => 2249
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1853
+            [name_position] => Смеситель ванна Givenchy 006
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 24.82
+            [price_position] => 860
+            [old_price_position] => 24.82
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2250] => Array
+        (
+            [id] => 2250
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1854
+            [name_position] => Смеситель ванна GROMIX 005  35к
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 9.1
+            [price_position] => 315.25
+            [old_price_position] => 9.1
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2251] => Array
+        (
+            [id] => 2251
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1855
+            [name_position] => Смеситель ванна GROMIX 005  NEW 35к
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 13.34
+            [price_position] => 462.25
+            [old_price_position] => 13.34
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2252] => Array
+        (
+            [id] => 2252
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1856
+            [name_position] => Смеситель ванна GROMIX 006  35к
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 7.91
+            [price_position] => 274
+            [old_price_position] => 7.91
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2253] => Array
+        (
+            [id] => 2253
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1857
+            [name_position] => Смеситель ванна Hercules 005
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 25.7
+            [price_position] => 890.5
+            [old_price_position] => 25.7
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2254] => Array
+        (
+            [id] => 2254
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1858
+            [name_position] => Смеситель ванна Jade 005 дл.нос
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 41.36
+            [price_position] => 1433.25
+            [old_price_position] => 41.36
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2255] => Array
+        (
+            [id] => 2255
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1859
+            [name_position] => Смеситель ванна Jade 006 дл.нос
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 41.36
+            [price_position] => 1433.25
+            [old_price_position] => 41.36
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2256] => Array
+        (
+            [id] => 2256
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1860
+            [name_position] => Смеситель ванна Laguna 005
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 27.86
+            [price_position] => 965.5
+            [old_price_position] => 27.86
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2257] => Array
+        (
+            [id] => 2257
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1861
+            [name_position] => Смеситель ванна Laguna 005 дл.нос
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 27.87
+            [price_position] => 965.75
+            [old_price_position] => 27.87
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2258] => Array
+        (
+            [id] => 2258
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1862
+            [name_position] => Смеситель ванна Laguna 006
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 27.86
+            [price_position] => 965.5
+            [old_price_position] => 27.86
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2259] => Array
+        (
+            [id] => 2259
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1863
+            [name_position] => Смеситель ванна Leader 005
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 16.03
+            [price_position] => 555.25
+            [old_price_position] => 16.03
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+    [2260] => Array
+        (
+            [id] => 2260
+            [id_catalog] => 36
+            [id_user] => 16
+            [id_category] => 86
+            [id_tosort] => 1864
+            [name_position] => Смеситель ванна Leader 006
+            [full_info] => 
+            [create_date] => 2012-04-01 15:45:18
+            [update_date] => 2012-04-01 15:50:06
+            [show_up] => yes
+            [min_price_position] => 16.44
+            [price_position] => 569.5
+            [old_price_position] => 16.44
+            [valuta] => USD
+            [howmany_sclad] => 10000
+            [metrolog_pos] => (шт.)
+            [to_sale] => 0
+            [to_realsale] => 0
+            [how_is_made] => -
+            [postavschik] => -
+            [src] => Array
+                (
+                    [id] => 
+                    [sq40] => Array
+                        (
+                            [src] => /i/no_photo.jpg
+                            [alt] => нет фото
+                            [title] => нет фото
+                            [width] => 40
+                        )
+
+                )
+
+        )
+
+)
