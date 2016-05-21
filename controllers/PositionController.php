@@ -11,6 +11,7 @@ use Yii;
 use yii\web\Controller;
 use yii\data\Pagination;
 use app\models\Position;
+use tpmanc\imagick\Imagick;
 
 class PositionController extends Controller {
 
@@ -38,10 +39,20 @@ class PositionController extends Controller {
         $tblPosition = new Position();
         $data = $tblPosition->getPosition($pager->limit, $pager->offset, $params);
 
+        //--- опыты  с имагиком
+        $img = Imagick::open(Yii::$app->getBasePath() . '/www/images/image.jpg');
+        $img->getWidth();
+        $img->getHeight();
+
+        $sourcePath = Yii::$app->getBasePath() . '/www/images/image.jpg';
+        $resultPath = Yii::$app->getBasePath() . '/www/images/thumb.jpg';
+        Imagick::open($sourcePath)->thumb(200, 200)->saveTo($resultPath);
+
         return $this->render('index', [
             'positions' => $data,
             'totalCount' => $totalCount,
             'pager' => $pager,
+            'imageSrc' => ['src' => Yii::$app->getUrlManager()->getBaseUrl() . '/images/thumb.jpg']
         ]);
     }
 }

@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
     <h1>Товары (<?= $totalCount ?>)</h1>
+    <p><?= Html::tag('img', '', $imageSrc) ?></p>
     <ul>
         <?php foreach ($positions as $value): ?>
             <li>
