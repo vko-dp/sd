@@ -9,7 +9,6 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\base\Event;
 
 
 class Position extends ActiveRecord {

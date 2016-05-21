@@ -11,7 +11,7 @@ use Yii;
 use yii\web\Controller;
 use yii\data\Pagination;
 use app\models\Position;
-use tpmanc\imagick\Imagick;
+use app\models\sd\ICache;
 
 class PositionController extends Controller {
 
@@ -40,19 +40,14 @@ class PositionController extends Controller {
         $data = $tblPosition->getPosition($pager->limit, $pager->offset, $params);
 
         //--- опыты  с имагиком
-        $img = Imagick::open(Yii::$app->getBasePath() . '/www/images/image.jpg');
-        $img->getWidth();
-        $img->getHeight();
-
-        $sourcePath = Yii::$app->getBasePath() . '/www/images/image.jpg';
-        $resultPath = Yii::$app->getBasePath() . '/www/images/thumb.jpg';
-        Imagick::open($sourcePath)->thumb(200, 200)->saveTo($resultPath);
+        //--- записываем источник
+        ICache::i()->writeSource(1, 'position', Yii::$app->getBasePath() . '/www/iCache/4.jpg');
 
         return $this->render('index', [
             'positions' => $data,
             'totalCount' => $totalCount,
             'pager' => $pager,
-            'imageSrc' => ['src' => Yii::$app->getUrlManager()->getBaseUrl() . '/images/thumb.jpg']
+            'imageSrc' => ['src' => Yii::$app->getUrlManager()->getBaseUrl() . '/iCache/thumb.jpg']
         ]);
     }
 }
