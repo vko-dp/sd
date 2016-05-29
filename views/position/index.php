@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php foreach ($positions as $value): ?>
             <li>
                 <?= Html::tag('img', '', $value['src']['sq40']) ?>&nbsp;
-                <?= Html::decode($value['name_position'] . "(" . $value['price_position'] . ")") ?>:
+                <?= Html::decode($value['name_position'] . "(" . $value['price_position'] . ")") . " | ID: " . $value['src']['id'] ?>:
                 <?= Yii::$app->formatter->asDate($value['create_date']) ?>
             </li>
         <?php endforeach; ?>

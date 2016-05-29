@@ -1,4 +1,243 @@
 Array
 (
-    [0] => Z:\home\yii_test.local\www\iCache\no_photo\1\source\1_600x600.jpg
+    [793] => Array
+        (
+            [id] => 704
+            [id_position] => 793
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto1324215727.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2011-12-18 15:42:18
+        )
+
+    [795] => Array
+        (
+            [id] => 706
+            [id_position] => 795
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto1324215727.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2011-12-18 15:42:18
+        )
+
+    [797] => Array
+        (
+            [id] => 708
+            [id_position] => 797
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto1324215727.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2011-12-18 15:42:18
+        )
+
+    [799] => Array
+        (
+            [id] => 710
+            [id_position] => 799
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto1324215727.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2011-12-18 15:42:18
+        )
+
+    [801] => Array
+        (
+            [id] => 712
+            [id_position] => 801
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto1324215727.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2011-12-18 15:42:18
+        )
+
+    [802] => Array
+        (
+            [id] => 713
+            [id_position] => 802
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto1324215727.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2011-12-18 15:43:18
+        )
+
+    [803] => Array
+        (
+            [id] => 714
+            [id_position] => 803
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto1324215727.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2011-12-18 15:43:18
+        )
+
+    [804] => Array
+        (
+            [id] => 715
+            [id_position] => 804
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto1324215727.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2011-12-18 15:43:18
+        )
+
+    [806] => Array
+        (
+            [id] => 717
+            [id_position] => 806
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto1324215727.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2011-12-18 15:43:18
+        )
+
+    [2130] => Array
+        (
+            [id] => 3070
+            [id_position] => 2130
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b6666bc0de1331390054.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-15 11:45:40
+        )
+
+    [2129] => Array
+        (
+            [id] => 3071
+            [id_position] => 2129
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b6666bc0de1331390054.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-15 11:46:10
+        )
+
+    [2123] => Array
+        (
+            [id] => 3093
+            [id_position] => 2123
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b5d6a4e1281331387754.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-23 21:16:48
+        )
+
+    [2124] => Array
+        (
+            [id] => 3094
+            [id_position] => 2124
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b76d667c651331394262.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-23 21:17:08
+        )
+
+    [2125] => Array
+        (
+            [id] => 3095
+            [id_position] => 2125
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b5fb80ae6b1331388344.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-23 21:17:23
+        )
+
+    [2126] => Array
+        (
+            [id] => 3096
+            [id_position] => 2126
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b60758feb31331388533.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-23 21:17:43
+        )
+
+    [2127] => Array
+        (
+            [id] => 3097
+            [id_position] => 2127
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b636bf0e9d1331389291.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-23 21:17:58
+        )
+
+    [2128] => Array
+        (
+            [id] => 3098
+            [id_position] => 2128
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b636bf0e9d1331389291.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-23 21:18:52
+        )
+
+    [2131] => Array
+        (
+            [id] => 3099
+            [id_position] => 2131
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b7acb6a7461331395275.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-23 21:19:19
+        )
+
+    [2133] => Array
+        (
+            [id] => 3100
+            [id_position] => 2133
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_foto4f5b7d9a724ce1331395994.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2012-05-23 21:19:36
+        )
+
+    [2882] => Array
+        (
+            [id] => 3752
+            [id_position] => 2882
+            [id_user] => 0
+            [title] => 
+            [link_img] => http://santeh-dnepr.dp.ua/dataimage/small_image_220.jpeg
+            [main_img] => yes
+            [_signal] => 0
+            [create_date] => 2013-12-30 14:20:28
+        )
+
 )

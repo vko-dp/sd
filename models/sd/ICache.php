@@ -10,7 +10,10 @@ namespace app\models\sd;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\FileHelper;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use tpmanc\imagick\Imagick;
+use app\models\PositionImage;
 
 class ICache extends ActiveRecord {
 
@@ -25,12 +28,23 @@ class ICache extends ActiveRecord {
     protected $_config = array(
         'no_photo' => array(
             'sourcePath' => '/' . self::CACHE_DIR . '/no_photo',
+            'pathPart' => null
         ),
-        'position' => array(
-            'allowedSizes'  => array('20x20','40x40','60x60','100x100','200x200','300x300','450x450','1024x800'),
+        PositionImage::I_CACHE_ALIAS_CONFIG => array(
+            'allowedSizes'  => array(
+                'sq20' => '20x20',
+                'sq40' => '40x40',
+                'sq60' => '60x60',
+                'sq100' => '100x100',
+                'sq200' => '200x200',
+                'sq300' => '300x300',
+                'sq450' => '450x450',
+                'gallery' => '1024x800'
+            ),
             'sourcePath' => '/' . self::CACHE_DIR . '/position',
             'sourceSize' => ['width' => 1024, 'height' => 800],
-            'dbTableSource' => 'PositionImage'
+            'dbTableSource' => 'PositionImage',
+            'pathPart' => null
         )
     );
 
@@ -45,16 +59,57 @@ class ICache extends ActiveRecord {
     }
 
     /**
+     * @param $name
+     * @param $id
+     * @param null $callback
+     * @return string
+     */
+    protected function _getPathPartByConfig($name, $id, $callback = null) {
+
+        //--- в приоритет пользовательская функция возвращающая часть пути урла картинки
+        if(!is_null($callback)) {
+            return call_user_func($callback, ['name' => $name, 'id' => $id]);
+        }
+        if(!is_null($this->_config[$name]['pathPart'])) {
+            return $this->_config[$name]['pathPart'];
+        }
+        if(!isset($this->_config[$name]['dbTableSource'])) {
+            return '';
+        }
+        $pathPart = '';
+        switch($this->_config[$name]['dbTableSource']) {
+            case 'PositionImage' :
+                $pathPart = PositionImage::getPathPart($id);
+                break;
+        }
+        return $pathPart;
+    }
+
+    /**
+     * @param $name
+     * @param $pathPart
+     */
+    protected function _setPathPart($name, $pathPart) {
+        if(isset($this->_config[$name]['pathPart'])) {
+            $this->_config[$name]['pathPart'] = $pathPart;
+        }
+    }
+
+    /**
      * @param $id
      * @param $name
      * @param bool|true $source
+     * @param null $callback
+     * @param string $aliasPath
      * @return bool|string
      */
-    protected function _getSourcePath($id, $name, $source = true) {
+    protected function _getSourcePath($id, $name, $source = true, $callback = null, $aliasPath = '@webroot') {
         if(!isset($this->_config[$name]['sourcePath'])) {
             return false;
         }
-        return FileHelper::normalizePath(Yii::$app->getBasePath() . '/www' . $this->_config[$name]['sourcePath'] . '/' . $id . ($source ? '/source' : ''));
+        $pathPart = $this->_getPathPartByConfig($name, $id, $callback);
+        $path = Yii::getAlias($aliasPath . $this->_config[$name]['sourcePath'] . '/' . $pathPart . $id . ($source ? '/source' : ''));
+        return ($aliasPath == '@web') ? $path : FileHelper::normalizePath($path);
     }
 
     /**
@@ -69,6 +124,14 @@ class ICache extends ActiveRecord {
      * @param $name
      * @return array
      */
+    protected function _getAllowedSize($name) {
+        return isset($this->_config[$name]['allowedSizes']) ? $this->_config[$name]['allowedSizes'] : array();
+    }
+
+    /**
+     * @param $name
+     * @return array
+     */
     protected function _getConfig($name) {
         return isset($this->_config[$name]) ? $this->_config[$name] : array();
     }
@@ -77,7 +140,7 @@ class ICache extends ActiveRecord {
      * @return bool
      */
     protected function _checkUrl() {
-        return (bool)preg_match("|^\/" . self::CACHE_DIR . "\/[a-z]{3,15}\/[\d]+\_[\d]{1,4}x[\d]{1,4}\.[a-zA-Z]{3,4}$|", trim(Yii::$app->getRequest()->get('uri')));
+        return (bool)preg_match("|^\/" . self::CACHE_DIR . "\/[a-z]{3,15}\/[^\&\?\.\,]*[\d]+\_[\d]{1,4}x[\d]{1,4}\.[a-zA-Z]{3,4}$|", trim(Yii::$app->getRequest()->get('uri')));
     }
 
     /**
@@ -88,6 +151,40 @@ class ICache extends ActiveRecord {
      */
     protected function _getFileName($id, array $size, $ext) {
         return $id . '_' . implode('x', $size) . '.' . $ext;
+    }
+
+    /**
+     * разбираем путь переданный в урл
+     * @return array
+     */
+    function _getPathParams() {
+        $params = parse_url(trim(Yii::$app->getRequest()->get('uri')));
+        $params =(isset($params['path']) && $params['path']) ? explode('/', trim($params['path'])) : array();
+        if(!$params) {
+            return array();
+        }
+        if(is_null(ArrayHelper::remove($params, 0))) {
+            return array();
+        }
+        if(ArrayHelper::remove($params, 1, '') != self::CACHE_DIR) {
+            return array();
+        }
+        if(is_null($configName = ArrayHelper::remove($params, 2))) {
+            return array();
+        }
+        $return = array(
+            'configName' => $configName,
+            'fileName' => end($params),
+        );
+        $parts = array();
+        foreach($params as $v) {
+            if(!in_array($v, $return)) {
+                $parts[] = $v;
+            }
+        }
+        $return['pathPart'] = count($parts) ? implode('/', $parts) . '/' : '';
+
+        return $return;
     }
 
     /**
@@ -154,6 +251,7 @@ class ICache extends ActiveRecord {
     }
 
     /**
+     * этот метод должен вызываться только при получении изображения
      * @return array
      */
     protected function _parseUrl() {
@@ -162,6 +260,7 @@ class ICache extends ActiveRecord {
             'config' => array(),
             'configName' => false,
             'fileName' => '',
+            'pathPart' => '',
             'id' => 0,
             'width' => 0,
             'height' => 0,
@@ -172,12 +271,14 @@ class ICache extends ActiveRecord {
             return $return;
         }
 
-        $params = parse_url(trim(Yii::$app->getRequest()->get('uri')));
-        $params =(isset($params['path']) && $params['path']) ? explode('/', trim($params['path'])) : array();
+        $params = $this->_getPathParams();
         if($params) {
-            $return['fileName'] = end($params);
-            $return['configName'] = strtolower(prev($params));
+            $return['fileName'] = $params['fileName'];
+            $return['configName'] = $params['configName'];
+            $return['pathPart'] = $params['pathPart'];
             $return['config'] = $this->_getConfig($return['configName']);
+            //--- нужно сохранить часть пути файла в конфиг
+            $this->_setPathPart($params['configName'], $params['pathPart']);
             //--- разбираем имя файла
             list($part, $return['ext']) = explode('.', $return['fileName']);
             if(!empty($part)) {
@@ -199,11 +300,30 @@ class ICache extends ActiveRecord {
      */
     protected function _sourcePath($id, $name, $ext) {
 
-        $files = FileHelper::findFiles($this->_getSourcePath($id, $name), ['filter' => function($path) use ($id, $ext) {
+        $path = $this->_getSourcePath($id, $name);
+        if(!is_dir($path)) {
+            return '';
+        }
+        $files = FileHelper::findFiles($path, ['filter' => function($path) use ($id, $ext) {
             $info = pathinfo($path);
             return (isset($info['basename']) && $info['basename']) ? (bool)preg_match("|{$id}\_\d+x\d+\.{$ext}|is", $info['basename']) : false;
         }]);
         return isset($files[0]) ? $files[0] : '';
+    }
+
+    /**
+     * @param $id
+     * @param $name
+     * @return array|mixed
+     */
+    protected function _sourceInfo($id, $name) {
+
+        $path = $this->_getSourcePath($id, $name);
+        if(!is_dir($path)) {
+            return array();
+        }
+        $files = FileHelper::findFiles($path);
+        return isset($files[0]) ? pathinfo($files[0]) : array();
     }
 
     /**
@@ -400,28 +520,63 @@ class ICache extends ActiveRecord {
             $name = $data['configName'];
             $ext = $data['ext'];
             $isAllowed = $this->_isAllowedSize($data['width'], $data['height'], $data['config']['allowedSizes']);
-            if(!$isAllowed) {
+            $sourcePath = $this->_sourcePath($id, $name, $ext);
+
+            if(!$isAllowed || !$sourcePath) {
                 $id = 1;
                 $name = 'no_photo';
                 $ext = 'jpg';
+                $sourcePath = $this->_sourcePath($id, $name, $ext);
             }
 
-            if($sourcePath = $this->_sourcePath($id, $name, $ext)) {
+            $path = $this->_getSourcePath($id, $name, false) . '/' . $this->_getFileName($id, array($data['width'], $data['height']), $ext);
+            $path = FileHelper::normalizePath($path);
+            if(!file_exists($path)) {
 
                 $img = Imagick::open($sourcePath);
                 $width = $img->getWidth();
                 $height = $img->getHeight();
                 $size = $this->_getScaleSize($width, $height, $data['width'], $data['height']);
+                $img->thumb($size['width'], $size['height'])->saveTo($path);
+            }
+            $return = array(
+                'path' => $path,
+                'mimeType' => FileHelper::getMimeType($path)
+            );
+        }
 
-                $path = $this->_getSourcePath($id, $name, false) . '/' . $this->_getFileName($id, $size, $ext);
-                $path = FileHelper::normalizePath($path);
-                if(!file_exists($path)) {
-                    $img->thumb($size['width'], $size['height'])->saveTo($path);
+        return $return;
+    }
+
+    /**
+     * возвращает массив урл проиндексироавнный алиасами из конфига
+     * если присутствует источник - если нет - заглушки
+     * @param $name
+     * @param $id
+     * @param $callback
+     * @return array
+     */
+    public function getUrlData($name, $id, $callback) {
+
+        $return = array();
+        $allowedSize = $this->_getAllowedSize($name);
+        $info = $this->_sourceInfo($id, $name);
+        $ext = isset($info['extension']) ? $info['extension'] : 'jpg';
+        if($allowedSize) {
+            foreach($allowedSize as $alias => $size) {
+
+                $fileName = $this->_getFileName($id, explode('x', $size), $ext);
+                $path = $this->_getSourcePath($id, $name, false, $callback) . '/' . $fileName;
+                $webUrl = $this->_getSourcePath($id, $name, false, $callback, '@web') . '/' . $fileName;
+
+                if(!$this->_sourcePath($id, $name, $ext)) {
+
+                    $fileNameNoPhoto = $this->_getFileName(1, explode('x', $size), 'jpg');
+                    $pathNoPhoto = $this->_getSourcePath(1, 'no_photo', false, function() {return '';}) . '/' . $fileNameNoPhoto;
+                    $webUrlNoPhoto = $this->_getSourcePath(1, 'no_photo', false, function() {return '';}, '@web') . '/' . $fileNameNoPhoto;
+                    $isExistsNoPhoto = file_exists($pathNoPhoto);
                 }
-                $return = array(
-                    'path' => $path,
-                    'mimeType' => FileHelper::getMimeType($path)
-                );
+                $return[$alias] = (isset($isExistsNoPhoto, $webUrlNoPhoto) && $isExistsNoPhoto) ? $webUrlNoPhoto : (file_exists($path) ? $webUrl : Url::toRoute(['i-cache/index', 'uri' => $webUrl]));
             }
         }
         return $return;

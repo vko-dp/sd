@@ -41,13 +41,13 @@ class PositionController extends Controller {
 
         //--- опыты  с имагиком
         //--- записываем источник
-        ICache::i()->writeSource(1, 'position', Yii::$app->getBasePath() . '/www/iCache/4.jpg');
+//        ICache::i()->writeSource(3093, 'position', Yii::getAlias('@webroot/iCache/image.jpg'));
 
         return $this->render('index', [
             'positions' => $data,
             'totalCount' => $totalCount,
             'pager' => $pager,
-            'imageSrc' => ['src' => Yii::$app->getUrlManager()->getBaseUrl() . '/iCache/thumb.jpg']
+            'imageSrc' => ['src' => Yii::getAlias('@web/iCache/thumb.jpg')]
         ]);
     }
 }

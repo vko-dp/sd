@@ -10,8 +10,11 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\base\Event;
+use app\models\sd\ICache;
 
 class PositionImage extends ActiveRecord {
+
+    const I_CACHE_ALIAS_CONFIG = 'position';
 
     public static function tableName() {
         return 'santeh_img_position';
@@ -21,31 +24,17 @@ class PositionImage extends ActiveRecord {
      * @param array $ids
      * @return array
      */
-    public function getByIds(array $ids) {
+    public function getByPositionIds(array $ids) {
 
         $data = $this->find()
             ->where(array(
                 'id_position' => $ids,
                 'main_img' => 'yes'
             ))
+            ->indexBy('id_position')
             ->asArray()
             ->all();
-
-        $return = array();
-        if($data) {
-            foreach($data as $v) {
-                $options = array(
-                    'src' => $v['link_img'],
-                    'alt' => $v['title'],
-                    'title' => $v['title']
-                );
-                $return[$v['id_position']] = array(
-                    'id' => $v['id'],
-                    'sq40' => array_merge($options, array('width' => 40)),
-                );
-            }
-        }
-        return $return;
+        return $data;
     }
 
     /**
@@ -55,21 +44,45 @@ class PositionImage extends ActiveRecord {
     public function preparePosition(Event $event) {
 
         $ids = array_keys($event->sender->data);
-        $images = $this->getByIds($ids);
+        $images = $this->getByPositionIds($ids);
+
         foreach($event->sender->data as &$v) {
-            if(!isset($v['src'])) {
-                $v['src'] = array();
+
+            //--- получаем и расширяем алиасы урлов данными для шаблона
+            $dataUrlAlias = ICache::i()->getUrlData(self::I_CACHE_ALIAS_CONFIG, $images[$v['id']]['id'], function($params) use ($v) {
+                return $v['id_catalog'] . '/';
+            });
+            foreach($dataUrlAlias as &$src) {
+                $src = array(
+                    'src' => $src,
+                    'alt' => isset($images[$v['id']]['id']) ? $images[$v['id']]['title'] : 'нет фото',
+                    'title' => isset($images[$v['id']]['id']) ? $images[$v['id']]['title'] : 'нет фото',
+                );
             }
-            $options = array(
-                'src' => Yii::$app->getUrlManager()->getBaseUrl() . '/i/no_photo.jpg',
-                'alt' => 'нет фото',
-                'title' => 'нет фото',
-            );
-            $v['src'] = isset($images[$v['id']]) ? $images[$v['id']] : array(
-                'id' => null,
-                'sq40' => array_merge($options, array('width' => 40)),
-            );
+            $v['src'] = array_merge(['id' => isset($images[$v['id']]['id']) ? $images[$v['id']]['id'] : null], $dataUrlAlias);
         }
         unset($v);
+    }
+
+    /**
+     * статичная функция для ICache - возвращает часть пути к изображению
+     * @param $id
+     * @return string
+     */
+    public static function getPathPart($id) {
+
+        $data = (new \yii\db\Query())
+            ->select("santeh_position.id_catalog")
+            ->from('santeh_img_position')
+            ->leftJoin('santeh_position', 'santeh_position.id = santeh_img_position.id_position')
+            ->where(array(
+                'santeh_img_position.id' => $id,
+            ))
+            ->one();
+
+        if(isset($data['id_catalog'])) {
+            return $data['id_catalog'] . '/';
+        }
+        return '';
     }
 }

@@ -1,0 +1,18 @@
+Options +FollowSymLinks
+IndexIgnore */*
+
+RewriteEngine on
+
+#icache
+RewriteCond %{REQUEST_URI} ^/iCache/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php?r=i-cache&uri=%{REQUEST_URI} [L]
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !^favicon\.ico
+RewriteCond %{REQUEST_URI} !^/iCache/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php
