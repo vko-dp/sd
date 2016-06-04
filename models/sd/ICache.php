@@ -44,7 +44,12 @@ class ICache extends ActiveRecord {
             'sourcePath' => '/' . self::CACHE_DIR . '/position',
             'sourceSize' => ['width' => 1024, 'height' => 800],
             'dbTableSource' => 'PositionImage',
-            'pathPart' => null
+            'pathPart' => null,
+            'noPhotoData' => array(
+                'id' => 2,
+                'name' => 'no_photo',
+                'ext' => 'png'
+            )
         )
     );
 
@@ -61,15 +66,10 @@ class ICache extends ActiveRecord {
     /**
      * @param $name
      * @param $id
-     * @param null $callback
      * @return string
      */
-    protected function _getPathPartByConfig($name, $id, $callback = null) {
+    protected function _getPathPartByConfig($name, $id) {
 
-        //--- в приоритет пользовательская функция возвращающая часть пути урла картинки
-        if(!is_null($callback)) {
-            return call_user_func($callback, ['name' => $name, 'id' => $id]);
-        }
         if(!is_null($this->_config[$name]['pathPart'])) {
             return $this->_config[$name]['pathPart'];
         }
@@ -90,7 +90,7 @@ class ICache extends ActiveRecord {
      * @param $pathPart
      */
     protected function _setPathPart($name, $pathPart) {
-        if(isset($this->_config[$name]['pathPart'])) {
+        if(isset($this->_config[$name])) {
             $this->_config[$name]['pathPart'] = $pathPart;
         }
     }
@@ -99,15 +99,15 @@ class ICache extends ActiveRecord {
      * @param $id
      * @param $name
      * @param bool|true $source
-     * @param null $callback
+     * @param null $pathPart
      * @param string $aliasPath
      * @return bool|string
      */
-    protected function _getSourcePath($id, $name, $source = true, $callback = null, $aliasPath = '@webroot') {
+    protected function _getSourcePath($id, $name, $source = true, $pathPart = null, $aliasPath = '@webroot') {
         if(!isset($this->_config[$name]['sourcePath'])) {
             return false;
         }
-        $pathPart = $this->_getPathPartByConfig($name, $id, $callback);
+        $pathPart = !is_null($pathPart) ? $pathPart : $this->_getPathPartByConfig($name, $id);
         $path = Yii::getAlias($aliasPath . $this->_config[$name]['sourcePath'] . '/' . $pathPart . $id . ($source ? '/source' : ''));
         return ($aliasPath == '@web') ? $path : FileHelper::normalizePath($path);
     }
@@ -159,30 +159,28 @@ class ICache extends ActiveRecord {
      */
     function _getPathParams() {
         $params = parse_url(trim(Yii::$app->getRequest()->get('uri')));
-        $params =(isset($params['path']) && $params['path']) ? explode('/', trim($params['path'])) : array();
-        if(!$params) {
+        $paramsUri =(isset($params['path']) && $params['path']) ? explode('/', trim($params['path'])) : array();
+        if(!$paramsUri) {
             return array();
         }
-        if(is_null(ArrayHelper::remove($params, 0))) {
+        if(is_null(ArrayHelper::remove($paramsUri, 0))) {
             return array();
         }
-        if(ArrayHelper::remove($params, 1, '') != self::CACHE_DIR) {
+        if(ArrayHelper::remove($paramsUri, 1, '') != self::CACHE_DIR) {
             return array();
         }
-        if(is_null($configName = ArrayHelper::remove($params, 2))) {
+        if(is_null($configName = ArrayHelper::remove($paramsUri, 2))) {
             return array();
         }
         $return = array(
             'configName' => $configName,
-            'fileName' => end($params),
+            'fileName' => end($paramsUri),
         );
-        $parts = array();
-        foreach($params as $v) {
-            if(!in_array($v, $return)) {
-                $parts[] = $v;
-            }
+        if(preg_match("|{$configName}\/(.+)\/[\d]+\/[\d]+\_[\d]{1,4}x[\d]{1,4}\.[a-zA-Z]{3,4}|i", $params['path'], $matches)) {
+            $return['pathPart'] = $matches[1] . '/';
+        } else {
+            $return['pathPart'] = '';
         }
-        $return['pathPart'] = count($parts) ? implode('/', $parts) . '/' : '';
 
         return $return;
     }
@@ -457,6 +455,9 @@ class ICache extends ActiveRecord {
             return false;
         }
 
+        //--- нужно чтобы был вызван метод возвращающий правильный путь для источника
+        $this->_setPathPart($name, null);
+
         $sourcePath = $this->_getSourcePath($id, $name);
         if(!$sourcePath) {
             return false;
@@ -523,9 +524,11 @@ class ICache extends ActiveRecord {
             $sourcePath = $this->_sourcePath($id, $name, $ext);
 
             if(!$isAllowed || !$sourcePath) {
-                $id = 1;
-                $name = 'no_photo';
-                $ext = 'jpg';
+
+                $noPhotoData = $data['config']['noPhotoData'];
+                $id = $noPhotoData['id'];
+                $name = $noPhotoData['name'];
+                $ext = $noPhotoData['ext'];
                 $sourcePath = $this->_sourcePath($id, $name, $ext);
             }
 
@@ -553,30 +556,34 @@ class ICache extends ActiveRecord {
      * если присутствует источник - если нет - заглушки
      * @param $name
      * @param $id
-     * @param $callback
+     * @param $pathPart
      * @return array
      */
-    public function getUrlData($name, $id, $callback) {
+    public function getUrlData($name, $id, $pathPart) {
 
         $return = array();
+        $config = $this->_getConfig($name);
         $allowedSize = $this->_getAllowedSize($name);
+        $this->_setPathPart($name, $pathPart);
         $info = $this->_sourceInfo($id, $name);
         $ext = isset($info['extension']) ? $info['extension'] : 'jpg';
         if($allowedSize) {
             foreach($allowedSize as $alias => $size) {
 
                 $fileName = $this->_getFileName($id, explode('x', $size), $ext);
-                $path = $this->_getSourcePath($id, $name, false, $callback) . '/' . $fileName;
-                $webUrl = $this->_getSourcePath($id, $name, false, $callback, '@web') . '/' . $fileName;
+                $path = $this->_getSourcePath($id, $name, false, $pathPart) . '/' . $fileName;
+                $webUrl = $this->_getSourcePath($id, $name, false, $pathPart, '@web') . '/' . $fileName;
 
                 if(!$this->_sourcePath($id, $name, $ext)) {
 
-                    $fileNameNoPhoto = $this->_getFileName(1, explode('x', $size), 'jpg');
-                    $pathNoPhoto = $this->_getSourcePath(1, 'no_photo', false, function() {return '';}) . '/' . $fileNameNoPhoto;
-                    $webUrlNoPhoto = $this->_getSourcePath(1, 'no_photo', false, function() {return '';}, '@web') . '/' . $fileNameNoPhoto;
+                    $noPhotoData = $config['noPhotoData'];
+
+                    $fileNameNoPhoto = $this->_getFileName($noPhotoData['id'], explode('x', $size), $noPhotoData['ext']);
+                    $pathNoPhoto = $this->_getSourcePath($noPhotoData['id'], $noPhotoData['name'], false, '') . '/' . $fileNameNoPhoto;
+                    $webUrlNoPhoto = $this->_getSourcePath($noPhotoData['id'], $noPhotoData['name'], false, '', '@web') . '/' . $fileNameNoPhoto;
                     $isExistsNoPhoto = file_exists($pathNoPhoto);
                 }
-                $return[$alias] = (isset($isExistsNoPhoto, $webUrlNoPhoto) && $isExistsNoPhoto) ? $webUrlNoPhoto : (file_exists($path) ? $webUrl : Url::toRoute(['i-cache/index', 'uri' => $webUrl]));
+                $return[$alias] = (isset($isExistsNoPhoto, $webUrlNoPhoto) && $isExistsNoPhoto) ? $webUrlNoPhoto : (file_exists($path) ? $webUrl : urldecode(Url::toRoute(['i-cache/index', 'uri' => $webUrl])));
             }
         }
         return $return;

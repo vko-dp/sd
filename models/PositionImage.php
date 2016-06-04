@@ -49,9 +49,7 @@ class PositionImage extends ActiveRecord {
         foreach($event->sender->data as &$v) {
 
             //--- получаем и расширяем алиасы урлов данными для шаблона
-            $dataUrlAlias = ICache::i()->getUrlData(self::I_CACHE_ALIAS_CONFIG, $images[$v['id']]['id'], function($params) use ($v) {
-                return $v['id_catalog'] . '/';
-            });
+            $dataUrlAlias = ICache::i()->getUrlData(self::I_CACHE_ALIAS_CONFIG, $images[$v['id']]['id'], $v['id_catalog'] . '/');
             foreach($dataUrlAlias as &$src) {
                 $src = array(
                     'src' => $src,

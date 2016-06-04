@@ -41,7 +41,7 @@ class PositionController extends Controller {
 
         //--- опыты  с имагиком
         //--- записываем источник
-//        ICache::i()->writeSource(3093, 'position', Yii::getAlias('@webroot/iCache/image.jpg'));
+//        ICache::i()->writeSource(3093, 'position', Yii::getAlias('@webroot/iCache/9.jpg'));
 
         return $this->render('index', [
             'positions' => $data,
