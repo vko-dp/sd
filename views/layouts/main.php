@@ -4,12 +4,14 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+$this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END]);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -74,6 +76,12 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+<script type="text/javascript">
+    window.widgets = new Object();
+    <?php foreach (Yii::$app->params['ajaxWidgetsData'] as $k => $v): ?>
+    window.widgets['<?= $k ?>'] = <?= Json::encode($v) ?>;
+    <?php endforeach; ?>
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>

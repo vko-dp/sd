@@ -7,7 +7,6 @@
  */
 
 use yii\helpers\Html;
-use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
 $this->title = 'Товары';
@@ -16,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
     <h1>Товары (<?= $totalCount ?>)</h1>
     <p><?= Html::tag('img', '', $imageSrc) ?></p>
-    <ul>
+    <ul id="id-position-list-container">
         <?php foreach ($positions as $value): ?>
             <li>
                 <?= Html::tag('img', '', $value['src']['sq40']) ?>&nbsp;
@@ -26,4 +25,5 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endforeach; ?>
     </ul>
 
-<?= LinkPager::widget(['pagination' => $pager]) ?>
+<?= $pager ?>
+<script type="text/javascript">window.baseUrl = '/position';</script>
