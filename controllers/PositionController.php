@@ -9,6 +9,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\data\Pagination;
+use yii\helpers\Html;
 use app\models\Position;
 use app\widgets\Pager;
 use app\models\sd\ICache;
@@ -61,8 +62,9 @@ class PositionController extends AjaxController {
                     'called' => __CLASS__,
                     'container' => 'id-position-list-container',
                     'params' => [
-                        'name' => 'dyadya petya',
-                        'id' => 56565656
+                        'name' => Html::encode('дядя вася'),
+                        'id' => 56565656,
+                        'params' => $params
                     ]
                 ]
             ]),
@@ -76,8 +78,21 @@ class PositionController extends AjaxController {
      * @return array
      */
     public static function getDataForPager(Pagination $pager, array $params) {
+
+        ob_start();
+        print_r(array($pager->limit, $pager->offset));
+        $string = ob_get_contents();
+        ob_end_clean();
+        file_put_contents('dump.txt', $string);
+
+        //--- получаем товары
+        $tblPosition = new Position();
+        $data = $tblPosition->getPosition($pager->limit, $pager->offset, $params['params']);
+
         return array(
-            'html' => '',
+            'html' => Yii::$app->createControllerByID('position')->renderPartial('index', [
+                'positions' => $data
+            ]),
             'params' => array()
         );
     }

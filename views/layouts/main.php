@@ -77,9 +77,10 @@ $this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END])
 
 <?php $this->endBody() ?>
 <script type="text/javascript">
+    window.baseUrl = '/<?= Yii::$app->controller->uniqueId; ?>';
     window.widgets = new Object();
     <?php foreach (Yii::$app->params['ajaxWidgetsData'] as $k => $v): ?>
-    window.widgets['<?= $k ?>'] = <?= Json::encode($v) ?>;
+    window.widgets['<?= $k ?>'] = <?= Json::encode(app\controllers\AjaxController::recursiveToUtf8($v), 0) ?>;
     <?php endforeach; ?>
 </script>
 </body>
