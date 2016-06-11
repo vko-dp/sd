@@ -78,7 +78,6 @@ class PositionController extends AjaxController {
      * @return array
      */
     public static function getDataForPager(Pagination $pager, array $params) {
-
         //--- получаем товары
         $tblPosition = new Position();
         $data = $tblPosition->getPosition($pager->limit, $pager->offset, $params['params']);
