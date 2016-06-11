@@ -19,13 +19,13 @@ if(!Yii::$app->request->isAjax) {
 <?php if(!Yii::$app->request->isAjax): ?>
 
     <h1>Товары (<?= $totalCount ?>)</h1>
-    <p><?= Html::tag('img', '', $imageSrc) ?></p>
+
     <ul id="id-position-list-container">
         <?php endif; ?>
 
         <?php foreach ($positions as $value): ?>
             <li>
-                <?= Html::tag('img', '', $value['src']['sq40']) ?>&nbsp;
+                <?= Html::tag('img', '', $value['src']['sq60']) ?>&nbsp;
                 <?= Html::decode($value['name_position'] . "(" . $value['price_position'] . ")") . " | ID: " . $value['src']['id'] ?>:
                 <?= Yii::$app->formatter->asDate($value['create_date']) ?>
             </li>

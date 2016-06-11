@@ -1,5 +1,6 @@
 <?php
 /**
+ * генерация изображений на лету
  * Created by PhpStorm.
  * User: Varenko Oleg
  * Date: 21.05.2016
@@ -35,6 +36,7 @@ class ICache extends ActiveRecord {
                 'sq20' => '20x20',
                 'sq40' => '40x40',
                 'sq60' => '60x60',
+                'sq80' => '80x80',
                 'sq100' => '100x100',
                 'sq200' => '200x200',
                 'sq300' => '300x300',
@@ -43,7 +45,7 @@ class ICache extends ActiveRecord {
             ),
             'sourcePath' => '/' . self::CACHE_DIR . '/position',
             'sourceSize' => ['width' => 1024, 'height' => 800],
-            'dbTableSource' => 'PositionImage',
+            'dbTableSource' => 'app\models\PositionImage',
             'pathPart' => null,
             'noPhotoData' => array(
                 'id' => 2,
@@ -76,13 +78,8 @@ class ICache extends ActiveRecord {
         if(!isset($this->_config[$name]['dbTableSource'])) {
             return '';
         }
-        $pathPart = '';
-        switch($this->_config[$name]['dbTableSource']) {
-            case 'PositionImage' :
-                $pathPart = PositionImage::getPathPart($id);
-                break;
-        }
-        return $pathPart;
+        $object = $this->_config[$name]['dbTableSource'];
+        return $object::getPathPart($id);
     }
 
     /**

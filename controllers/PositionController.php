@@ -49,7 +49,7 @@ class PositionController extends AjaxController {
 
         //--- опыты  с имагиком
         //--- записываем источник
-//        ICache::i()->writeSource(3093, 'position', Yii::getAlias('@webroot/iCache/9.jpg'));
+//        ICache::i()->writeSource(3093, 'position', Yii::getAlias('@webroot/iCache/fsdfasdfds.jpeg'));
 
         return $this->render('index', [
             'positions' => $data,
@@ -67,8 +67,7 @@ class PositionController extends AjaxController {
                         'params' => $params
                     ]
                 ]
-            ]),
-            'imageSrc' => ['src' => Yii::getAlias('@web/iCache/thumb.jpg')]
+            ])
         ]);
     }
 
