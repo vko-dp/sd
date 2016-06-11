@@ -14,6 +14,7 @@ use yii\widgets\LinkPager;
 use yii\helpers\ArrayHelper;
 use app\controllers\AjaxController;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 class Pager extends LinkPager {
 
@@ -26,32 +27,42 @@ class Pager extends LinkPager {
         if($this->registerLinkTags) {
             $this->registerLinkTags();
         }
-        if($this->isAjaxBtn) {
+        $currentPage = $this->pagination->getPage();
+        $pageCount = $this->pagination->getPageCount();
+        if($this->isAjaxBtn && !($currentPage >= $pageCount - 1)) {
             //--- подключаем стили и скрипты
             $view = $this->getView();
             $view->registerCssFile('@web/css/widgets/pager.css');
             $view->registerJsFile('@web/js/widgets/pager.js', ['position' => $view::POS_END]);
             //--- сохраняем параметры для подгрузки
             Yii::$app->params['ajaxWidgetsData'] = ArrayHelper::merge(Yii::$app->params['ajaxWidgetsData'], [
-                'Pager' => array_merge($this->ajaxPagerParams, [
+                'Pager' => array_merge([
                     'maxButtonCount' => $this->maxButtonCount,
                     'defaultPageSize' => $this->pagination->defaultPageSize,
-                    'currentPage' => $this->pagination->getPage(),
+                    'currentPage' => $currentPage + 1,
                     'pageSize' => $this->pagination->getPageSize(),
-                    'totalCount' => $this->pagination->getPageCount()
-                ])
+                    'totalPage' => $pageCount,
+                    'totalCount' => intval($this->pagination->totalCount)
+                ], $this->ajaxPagerParams)
             ]);
-            $btn = Html::tag('span', 'показать еще', [
+            $indicator = Html::tag('img', '', [
+                'src' => Url::to('@web/i/pager-stat-btn.gif'),
+                'class' => 'pagination-ajax-indicator',
+                'alt' => ''
+            ]);
+            $btn = Html::tag('span', "{$indicator} показать еще", [
                 'class' => 'pagination-ajax-btn btn-show-next-page',
             ]);
         } else {
             $btn = '';
         }
         $buttons =  $this->renderPageButtons();
-        echo Html::tag('div', "{$btn}{$buttons}");
+        echo (Yii::$app->request->isAjax ? $buttons : Html::tag('div', "{$btn}{$buttons}"));
     }
 
     /**
+     * обработчик аякса кнопки показать еще
+     * данные должен вернуть метод вызывающего класса
      * @param AjaxController $controller
      */
     public static function getNextPage(AjaxController $controller) {
@@ -90,7 +101,9 @@ class Pager extends LinkPager {
 
         $controller->responseStatus = AjaxController::OK_STATUS;
         $controller->responseData = array_merge([
-            'pagerHtml' => $pagerHtml
+            'pagerHtml' => preg_replace('|(\s+href\=\"[^\"]*)(ajax)([^\"]*\")|isU', '$1$3', $pagerHtml),
+            'currentPage' => $pager->getPage(),
+            'totalCount' => $pager->getPageCount()
         ], $data);
     }
 }

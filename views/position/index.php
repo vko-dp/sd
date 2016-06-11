@@ -8,14 +8,21 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-$this->title = 'Товары';
-$this->params['breadcrumbs'][] = $this->title;
+if(!Yii::$app->request->isAjax) {
+
+    /* @var $this yii\web\View */
+    $this->title = 'Товары';
+    $this->params['breadcrumbs'][] = $this->title;
+}
 
 ?>
+<?php if(!Yii::$app->request->isAjax): ?>
+
     <h1>Товары (<?= $totalCount ?>)</h1>
     <p><?= Html::tag('img', '', $imageSrc) ?></p>
     <ul id="id-position-list-container">
+        <?php endif; ?>
+
         <?php foreach ($positions as $value): ?>
             <li>
                 <?= Html::tag('img', '', $value['src']['sq40']) ?>&nbsp;
@@ -23,7 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Yii::$app->formatter->asDate($value['create_date']) ?>
             </li>
         <?php endforeach; ?>
+
+        <?php if(!Yii::$app->request->isAjax): ?>
     </ul>
 
 <?= $pager ?>
-<script type="text/javascript">window.baseUrl = '/position';</script>
+<?php endif; ?>
