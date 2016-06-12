@@ -24,12 +24,22 @@ abstract class AjaxController extends Controller {
     abstract protected function _registerAjaxWidgets();
 
     /**
-     * @param $name
-     * @param array $handlers
+     * @param $widget
      */
-    protected function _registerWidget($name, array $handlers) {
-        if(!isset(Yii::$app->params['ajaxWidgets'][$name])) {
-            Yii::$app->params['ajaxWidgets'][$name] = $handlers;
+    protected function _registerWidget($widget) {
+
+        $currHandlers = $widget::getAjaxHandlers();
+        if($currHandlers && !isset(Yii::$app->params['ajaxWidgets'][$widget])) {
+            Yii::$app->params['ajaxWidgets'][$widget] = $currHandlers;
+        }
+        $includeWidgets = $widget::getRegisterWidgets();
+        if($includeWidgets) {
+            foreach($includeWidgets as $w) {
+                $handlers = $w::getAjaxHandlers();
+                if($handlers && !isset(Yii::$app->params['ajaxWidgets'][$w])) {
+                    Yii::$app->params['ajaxWidgets'][$w] = $handlers;
+                }
+            }
         }
     }
 

@@ -26,7 +26,7 @@ $this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END])
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
+<div class="wrap"><a class="btn btn-default"></a>
     <?php
     NavBar::begin([
         'brandLabel' => 'My Company main temp',
@@ -38,7 +38,7 @@ $this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END])
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Товары', 'url' => ['/product/default']],
+            ['label' => 'Товары', 'url' => ['/product/default/index']],
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],

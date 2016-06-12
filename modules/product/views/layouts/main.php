@@ -38,7 +38,7 @@ $this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END])
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
-                ['label' => 'Товары', 'url' => ['/product/default']],
+                ['label' => 'Товары', 'url' => ['/product/default/index']],
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
@@ -63,7 +63,14 @@ $this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END])
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
-            <?= $content ?>
+            <table class="table table-condensed">
+                <tr>
+                    <td class="text-left"><?= $content ?></td>
+                    <td style="width: 300px;" class="text-capitalize">
+                        <?= Yii::$app->getModule('product')->getWidget('cart'); ?>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 

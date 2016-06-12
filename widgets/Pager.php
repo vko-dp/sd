@@ -12,15 +12,27 @@ use Yii;
 use yii\data\Pagination;
 use yii\widgets\LinkPager;
 use yii\helpers\ArrayHelper;
-use app\controllers\AjaxController;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\controllers\AjaxController;
+use app\models\ajax\AjaxInterface;
 
-class Pager extends LinkPager {
+class Pager extends LinkPager implements AjaxInterface {
 
     public $isAjaxBtn = false;
 
     public $ajaxPagerParams = array();
+
+    /** регистрируем подключенные аякс виджеты */
+    public static function getRegisterWidgets() {
+        return array();
+    }
+    /** регистрируем аякс обработчики виджета */
+    public static function getAjaxHandlers() {
+        return array(
+            'getNextPage'
+        );
+    }
 
     public function run() {
 
