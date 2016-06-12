@@ -43,7 +43,12 @@ $config = [
             'showScriptName' => false,
 //            'rules' => [
 //            ],
-        ],
+        ]
+    ],
+    'modules' => [
+        'product' => [
+            'class' => 'app\modules\product\Module',
+        ]
     ],
     'params' => $params,
 ];

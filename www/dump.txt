@@ -1,5 +1,1 @@
-Array
-(
-    [0] => 20
-    [1] => 2200
-)
+Z:\home\yii_test.local\views\default

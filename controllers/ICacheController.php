@@ -9,7 +9,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\sd\ICache;
+use app\models\ICache;
 use yii\web\Response;
 
 class ICacheController extends Controller {

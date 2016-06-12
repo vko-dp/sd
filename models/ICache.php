@@ -6,7 +6,7 @@
  * Date: 21.05.2016
  * Time: 11:16
  */
-namespace app\models\sd;
+namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
@@ -14,7 +14,7 @@ use yii\helpers\FileHelper;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use tpmanc\imagick\Imagick;
-use app\models\PositionImage;
+use app\modules\product\models\ProductImage;
 
 class ICache extends ActiveRecord {
 
@@ -31,7 +31,7 @@ class ICache extends ActiveRecord {
             'sourcePath' => '/' . self::CACHE_DIR . '/no_photo',
             'pathPart' => null
         ),
-        PositionImage::I_CACHE_ALIAS_CONFIG => array(
+        ProductImage::I_CACHE_ALIAS_CONFIG => array(
             'allowedSizes'  => array(
                 'sq20' => '20x20',
                 'sq40' => '40x40',
@@ -45,7 +45,7 @@ class ICache extends ActiveRecord {
             ),
             'sourcePath' => '/' . self::CACHE_DIR . '/position',
             'sourceSize' => ['width' => 1024, 'height' => 800],
-            'dbTableSource' => 'app\models\PositionImage',
+            'dbTableSource' => 'app\modules\product\models\ProductImage',
             'pathPart' => null,
             'noPhotoData' => array(
                 'id' => 2,

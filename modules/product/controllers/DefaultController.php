@@ -5,16 +5,17 @@
  * Date: 08.05.2016
  * Time: 10:19
  */
-namespace app\controllers;
+namespace app\modules\product\controllers;
 
 use Yii;
 use yii\data\Pagination;
 use yii\helpers\Html;
-use app\models\Position;
+use app\controllers\AjaxController;
+use app\modules\product\models\Product;
 use app\widgets\Pager;
-use app\models\sd\ICache;
+use app\models\ICache;
 
-class PositionController extends AjaxController {
+class DefaultController extends AjaxController {
 
     const LIMIT = 20;
 
@@ -35,7 +36,7 @@ class PositionController extends AjaxController {
             'sorter' => 'name_position asc'
         );
 
-        $totalCount = Position::find()->where($params['filter'])->count();
+        $totalCount = Product::find()->where($params['filter'])->count();
         //--- пагинатор
         $pager = new Pagination([
             'defaultPageSize' => 3,
@@ -44,8 +45,8 @@ class PositionController extends AjaxController {
         $pager->setPageSize(self::LIMIT);
 
         //--- получаем товары
-        $tblPosition = new Position();
-        $data = $tblPosition->getPosition($pager->limit, $pager->offset, $params);
+        $tblPosition = new Product();
+        $data = $tblPosition->getProduct($pager->limit, $pager->offset, $params);
 
         //--- опыты  с имагиком
         //--- записываем источник
@@ -79,11 +80,15 @@ class PositionController extends AjaxController {
     public static function getDataForPager(Pagination $pager, array $params) {
 
         //--- получаем товары
-        $tblPosition = new Position();
-        $data = $tblPosition->getPosition($pager->limit, $pager->offset, $params['params']);
+        $tblPosition = new Product();
+        $data = $tblPosition->getProduct($pager->limit, $pager->offset, $params['params']);
+
+        Yii::$app->controllerNamespace = 'app\modules\product\controllers';
+        $controller = Yii::$app->createControllerByID('default');
+        $controller->setViewPath('@app/modules/product/views/default');
 
         return array(
-            'html' => Yii::$app->createControllerByID('position')->renderPartial('index', [
+            'html' => $controller->renderPartial('index', [
                 'positions' => $data
             ]),
             'params' => array()

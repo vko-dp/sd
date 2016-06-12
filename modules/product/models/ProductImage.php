@@ -5,14 +5,14 @@
  * Date: 08.05.2016
  * Time: 11:28
  */
-namespace app\models;
+namespace app\modules\product\models;
 
 use Yii;
 use yii\db\ActiveRecord;
 use yii\base\Event;
-use app\models\sd\ICache;
+use app\models\ICache;
 
-class PositionImage extends ActiveRecord {
+class ProductImage extends ActiveRecord {
 
     const I_CACHE_ALIAS_CONFIG = 'position';
 
@@ -24,7 +24,7 @@ class PositionImage extends ActiveRecord {
      * @param array $ids
      * @return array
      */
-    public function getByPositionIds(array $ids) {
+    public function getByProductIds(array $ids) {
 
         $data = $this->find()
             ->where(array(
@@ -44,7 +44,7 @@ class PositionImage extends ActiveRecord {
     public function preparePosition(Event $event) {
 
         $ids = array_keys($event->sender->data);
-        $images = $this->getByPositionIds($ids);
+        $images = $this->getByProductIds($ids);
 
         foreach($event->sender->data as &$v) {
 

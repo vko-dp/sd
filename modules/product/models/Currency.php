@@ -5,7 +5,7 @@
  * Date: 14.05.2016
  * Time: 9:32
  */
-namespace app\models;
+namespace app\modules\product\models;
 
 use Yii;
 use yii\db\ActiveRecord;

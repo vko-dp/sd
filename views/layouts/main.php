@@ -29,7 +29,7 @@ $this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END])
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'My Company main temp',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -38,7 +38,7 @@ $this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END])
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Товары', 'url' => ['/position/index']],
+            ['label' => 'Товары', 'url' => ['/product/default']],
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],

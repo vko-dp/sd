@@ -5,13 +5,13 @@
  * Date: 08.05.2016
  * Time: 10:11
  */
-namespace app\models;
+namespace app\modules\product\models;
 
 use Yii;
 use yii\db\ActiveRecord;
 
 
-class Position extends ActiveRecord {
+class Product extends ActiveRecord {
 
     public $data = array();
 
@@ -27,7 +27,7 @@ class Position extends ActiveRecord {
      * @param array $params
      * @return array
      */
-    public function getPosition($limit = 20, $offset = 0, array $params = array()) {
+    public function getProduct($limit = 20, $offset = 0, array $params = array()) {
 
         $query = $this->find();
         if(isset($params['filter'])) {
@@ -46,7 +46,7 @@ class Position extends ActiveRecord {
         //--- устанавливаем цены в соответствии с курсами валют
         $this->on(self::FETCH_ALL_POSITION, [new Currency(), 'preparePosition']);
         //--- добавляем главное фото
-        $this->on(self::FETCH_ALL_POSITION, [new PositionImage(), 'preparePosition']);
+        $this->on(self::FETCH_ALL_POSITION, [new ProductImage(), 'preparePosition']);
         $this->trigger(self::FETCH_ALL_POSITION);
         return $this->data;
     }
