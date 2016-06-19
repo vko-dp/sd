@@ -15,6 +15,32 @@ class Currency extends ActiveRecord {
 
     protected static $_rates = array();
 
+    /** @var bool флаг выборки - true|false админка все/представление только не удаленные */
+    private static $_fetchAdmin = false;
+
+    /**
+     * @param bool|true $param
+     * @return $this
+     */
+    public function setFetchAdmin($param = true) {
+        self::$_fetchAdmin = (bool)$param;
+        return $this;
+    }
+
+    /**
+     * перегружаем метод чтобы в системе представления не фильтровать постоянно удаленных и неактивных
+     * @return $this|\yii\db\ActiveQuery
+     */
+    public static function find() {
+        $find = parent::find();
+        return self::$_fetchAdmin ? $find : $find->where([
+            'trash' => 0,
+        ]);
+    }
+
+    /**
+     * @return string
+     */
     public static function tableName() {
         return 'santeh_currency';
     }

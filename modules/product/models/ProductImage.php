@@ -16,6 +16,32 @@ class ProductImage extends ActiveRecord {
 
     const I_CACHE_ALIAS_CONFIG = 'position';
 
+    /** @var bool флаг выборки - true|false админка все/представление только не удаленные */
+    private static $_fetchAdmin = false;
+
+    /**
+     * @param bool|true $param
+     * @return $this
+     */
+    public function setFetchAdmin($param = true) {
+        self::$_fetchAdmin = (bool)$param;
+        return $this;
+    }
+
+    /**
+     * перегружаем метод чтобы в системе представления не фильтровать постоянно удаленных и неактивных
+     * @return $this|\yii\db\ActiveQuery
+     */
+    public static function find() {
+        $find = parent::find();
+        return self::$_fetchAdmin ? $find : $find->where([
+            'trash' => 0,
+        ]);
+    }
+
+    /**
+     * @return string
+     */
     public static function tableName() {
         return 'santeh_img_position';
     }
@@ -74,6 +100,7 @@ class ProductImage extends ActiveRecord {
             ->from('santeh_img_position')
             ->leftJoin('santeh_position', 'santeh_position.id = santeh_img_position.id_position')
             ->where(array(
+                'trash' => 0,
                 'santeh_img_position.id' => $id,
             ))
             ->one();

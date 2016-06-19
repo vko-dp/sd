@@ -15,16 +15,39 @@ class Product extends ActiveRecord {
 
     const FETCH_ALL_POSITION = 'fetch_all_position_ready';
 
-    public $data = array();
-    /** @var array для фильтрации только активных товаров */
-    protected $_activeProducts = array(
-        'show_up' => 'yes',
-    );
+    /** @var bool флаг выборки - true|false админка все/представление только не удаленные */
+    private static $_fetchAdmin = false;
     /** @var array дефольтная сортировка */
     protected $_defaultSorter = array(
         'name_position' => 'asc'
     );
 
+    public $data = array();
+
+    /**
+     * @param bool|true $param
+     * @return $this
+     */
+    public function setFetchAdmin($param = true) {
+        self::$_fetchAdmin = (bool)$param;
+        return $this;
+    }
+
+    /**
+     * перегружаем метод чтобы в системе представления не фильтровать постоянно удаленных и неактивных
+     * @return $this|\yii\db\ActiveQuery
+     */
+    public static function find() {
+        $find = parent::find();
+        return self::$_fetchAdmin ? $find : $find->where([
+            'trash' => 0,
+            'show_up' => 'yes',
+        ]);
+    }
+
+    /**
+     * @return string
+     */
     public static function tableName() {
         return 'santeh_position';
     }
@@ -40,8 +63,9 @@ class Product extends ActiveRecord {
         $query = $this->find();
 
         //--- фильтрация
-        $params['filter'] = (isset($params['filter']) && is_array($params['filter'])) ? array_merge($this->_activeProducts, $params['filter']) : $this->_activeProducts;
-        $query->where($params['filter']);
+        if(isset($params['filter'])) {
+            $query->where($params['filter']);
+        }
 
         //--- сортировка
         $params['sorter'] = isset($params['sorter']) ?  $params['sorter'] : $this->_defaultSorter;
@@ -67,8 +91,9 @@ class Product extends ActiveRecord {
      */
     public function getCount($params = array()) {
         $query = $this->find();
-        $params = array_merge($this->_activeProducts, $params);
-        $query->where($params);
+        if($params) {
+            $query->where($params);
+        }
         return $query->count();
     }
 }

@@ -2,53 +2,81 @@
 
 namespace app\models;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
-{
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
+class User extends ActiveRecord implements IdentityInterface {
 
+    /** @var array данные авторизованного пользователя */
+    private static $_user = array();
+    /** @var bool флаг выборки - true|false админка все пользователи/представление только не удаленные с активированным профилем */
+    private static $_fetchAdmin = false;
+
+    public $username = '';
 
     /**
-     * @inheritdoc
+     * @return string
      */
-    public static function findIdentity($id)
-    {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+    public static function tableName() {
+        return 'santeh_user';
     }
 
     /**
+     * @param bool|true $param
+     * @return $this
+     */
+    public function setFetchAdmin($param = true) {
+        self::$_fetchAdmin = (bool)$param;
+        return $this;
+    }
+
+    /**
+     * перегружаем метод чтобы в системе представления не фильтровать постоянно удаленных и неактивных
+     * @return $this|\yii\db\ActiveQuery
+     */
+    public static function find() {
+        $find = parent::find();
+        return self::$_fetchAdmin ? $find : $find->where([
+            'trash' => 0,
+            'activated' => 'yes'
+        ]);
+    }
+
+
+    /** @var array активированные записи пользователей */
+    protected $_activeUser = array(
+        'activated' => 'yes'
+    );
+
+
+    /**
      * @inheritdoc
      */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
+    public static function findIdentity($id) {
+        
+        if(!self::$_user) {
+            self::$_user = self::getById($id);
         }
-
+        if(isset(self::$_user['id']) && self::$_user['id'] == $id) {
+            return new static(['username' => self::$_user['name_user']]);
+        }
         return null;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type = null) {}
+
+    /**
+     * @inheritdoc
+     */
+    public function getAuthKey() {}
+
+    /**
+     * @inheritdoc
+     */
+    public function validateAuthKey($authKey) {}
 
     /**
      * Finds user by username
@@ -56,39 +84,22 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      * @param string $username
      * @return static|null
      */
-    public static function findByUsername($username)
-    {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
+    public static function findByUsername($username) {
 
+        if(!self::$_user) {
+            self::$_user = self::getByNick($username);
+        }
+        if(isset(self::$_user['name_user']) && (strcasecmp(self::$_user['name_user'], $username) === 0)) {
+            return new static(['username' => self::$_user['name_user']]);
+        }
         return null;
     }
 
     /**
      * @inheritdoc
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getAuthKey()
-    {
-        return $this->authKey;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function validateAuthKey($authKey)
-    {
-        return $this->authKey === $authKey;
+    public function getId() {
+        return isset(self::$_user['id']) ? self::$_user['id'] : null;
     }
 
     /**
@@ -97,8 +108,51 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      * @param string $password password to validate
      * @return boolean if password provided is valid for current user
      */
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
+    public function validatePassword($password) {
+
+        if(isset(self::$_user['password']) && (strcasecmp(self::$_user['password'], md5($password)) === 0)) {
+            return new static(['username' => self::$_user['name_user']]);
+        }
+        return null;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserInfo() {
+        return $this->hasMany(UserInfo::className(), ['id_parrent' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserGroup() {
+        return $this->hasOne(UserGroup::className(), ['id' => 'id_parrent']);
+    }
+
+    /**
+     * @param $id
+     * @return array|null|ActiveRecord
+     */
+    public static function getById($id) {
+
+        return self::find()
+            ->with('userInfo', 'userGroup')
+            ->andWhere(['id' => (int)$id])
+            ->asArray()
+            ->one();
+    }
+
+    /**
+     * @param $name
+     * @return array|null|ActiveRecord
+     */
+    public static function getByNick($name) {
+
+        return self::find()
+            ->with('userInfo', 'userGroup')
+            ->andWhere(['name_user' => $name])
+            ->asArray()
+            ->one();
     }
 }
