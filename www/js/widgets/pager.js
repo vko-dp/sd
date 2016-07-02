@@ -30,7 +30,7 @@ yii.pager = (function($) {
                     jqBtnNextPage.next(jqSelLinks).remove();
                     jqBtnNextPage.parent().append(html);
                 },
-                //--- добавляем в урл номер страницы без перезагрузки
+                //--- РґРѕР±Р°РІР»СЏРµРј РІ СѓСЂР» РЅРѕРјРµСЂ СЃС‚СЂР°РЅРёС†С‹ Р±РµР· РїРµСЂРµР·Р°РіСЂСѓР·РєРё
                 setCurrentUrl = function(page) {
 
                     var params = yii.getQueryParams(window.location.search),
@@ -46,7 +46,7 @@ yii.pager = (function($) {
 
             this.init = function() {
 
-                //--- тест
+                //--- С‚РµСЃС‚
                 jqBtnNextPage.click(function() {
 
                     if(!isRequest) {
@@ -102,7 +102,7 @@ yii.pager = (function($) {
                 }
             };
 
-            // добавляем колбек
+            // РґРѕР±Р°РІР»СЏРµРј РєРѕР»Р±РµРє
             this.setSuccessCallback = function(callback) {
                 if($.isFunction(callback) && $.inArray(callback, successCallback) == -1) {
                     successCallback.push(callback);
@@ -117,7 +117,7 @@ yii.pager = (function($) {
         self: Pub,
         init: function() {
             Pub.init();
-            // генерируем событие инициализации виджета пейджера
+            // РіРµРЅРµСЂРёСЂСѓРµРј СЃРѕР±С‹С‚РёРµ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РІРёРґР¶РµС‚Р° РїРµР№РґР¶РµСЂР°
             $(document).trigger('init-widget-pager', [Pub]);
         }
     };

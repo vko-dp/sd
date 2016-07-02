@@ -1,6 +1,6 @@
 <?php
 /**
- * âèäæåò äëÿ âûâîäà òîâàðíûõ ïîçèöèé
+ * Ð²Ð¸Ð´Ð¶ÐµÑ‚ Ð´Ð»Ñ Ð²Ñ‹Ð²Ð¾Ð´Ð° Ñ‚Ð¾Ð²Ð°Ñ€Ð½Ñ‹Ñ… Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¹
  * Created by PhpStorm.
  * User: Varenko Oleg
  * Date: 12.06.2016
@@ -20,25 +20,25 @@ class ProductWidget extends Widget implements AjaxInterface {
 
     public static $totalCount = 0;
 
-    /** @var array òîâàðíûå ïîçèöèè */
+    /** @var array Ñ‚Ð¾Ð²Ð°Ñ€Ð½Ñ‹Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ */
     public $products = array();
-    /** @var array ïàðàìåòðû ôèëüòðàöèè è ñîðòèðîâêè */
+    /** @var array Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð°Ñ†Ð¸Ð¸ Ð¸ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ¸ */
     public $productParams = array();
-    /** @var string | Pager ïàãèíàòîð */
+    /** @var string | Pager Ð¿Ð°Ð³Ð¸Ð½Ð°Ñ‚Ð¾Ñ€ */
     public $pager = '';
     public $limit = 0;
     public $offset = 0;
     public $productListContainerSelId = 'id-product-list-container';
-    /** @var array ñîçäàòü ïåéäæåð ñ ïàðàìåòðàìè */
+    /** @var array ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ð¿ÐµÐ¹Ð´Ð¶ÐµÑ€ Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸ */
     public $createPagerParams = array();
 
-    /** ðåãèñòðèðóåì ïîäêëþ÷åííûå àÿêñ âèäæåòû */
+    /** Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€ÑƒÐµÐ¼ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð½Ñ‹Ðµ Ð°ÑÐºÑ Ð²Ð¸Ð´Ð¶ÐµÑ‚Ñ‹ */
     public static function getRegisterWidgets() {
         return array(
             'app\widgets\Pager'
         );
     }
-    /** ðåãèñòðèðóåì àÿêñ îáðàáîò÷èêè âèäæåòà */
+    /** Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€ÑƒÐµÐ¼ Ð°ÑÐºÑ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸ÐºÐ¸ Ð²Ð¸Ð´Ð¶ÐµÑ‚Ð° */
     public static function getAjaxHandlers() {
         return array();
     }
@@ -54,7 +54,7 @@ class ProductWidget extends Widget implements AjaxInterface {
             $params = isset($this->productParams['filter']) ? $this->productParams['filter'] : array();
             self::$totalCount = $tblPosition->getCount($params);
 
-            //--- ïàãèíàòîð
+            //--- Ð¿Ð°Ð³Ð¸Ð½Ð°Ñ‚Ð¾Ñ€
             $this->pager = new Pagination(array_merge($this->createPagerParams['pagerParams'], [
                 'totalCount' => self::$totalCount,
             ]));
@@ -65,7 +65,7 @@ class ProductWidget extends Widget implements AjaxInterface {
             $this->offset = $this->pager->offset;
         }
         if(!$this->products) {
-            //--- ïîëó÷àåì òîâàðû
+            //--- Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ñ‚Ð¾Ð²Ð°Ñ€Ñ‹
             $this->products = $tblPosition->getProduct($this->limit, $this->offset, $this->productParams);
         }
 

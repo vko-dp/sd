@@ -10,8 +10,8 @@ namespace app\models\ajax;
 
 interface AjaxInterface {
 
-    /** регистрируем подключенные аякс виджеты */
+    /** СЂРµРіРёСЃС‚СЂРёСЂСѓРµРј РїРѕРґРєР»СЋС‡РµРЅРЅС‹Рµ Р°СЏРєСЃ РІРёРґР¶РµС‚С‹ */
     public static function getAjaxHandlers();
-    /** регистрируем аякс обработчики виджета */
+    /** СЂРµРіРёСЃС‚СЂРёСЂСѓРµРј Р°СЏРєСЃ РѕР±СЂР°Р±РѕС‚С‡РёРєРё РІРёРґР¶РµС‚Р° */
     public static function getRegisterWidgets();
 }

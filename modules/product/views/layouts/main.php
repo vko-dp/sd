@@ -38,7 +38,7 @@ $this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END])
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
-                ['label' => 'Òîâàðû', 'url' => ['/product/default/index']],
+                ['label' => 'Ð¢Ð¾Ð²Ð°Ñ€Ñ‹', 'url' => ['/product/default/index']],
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
@@ -87,7 +87,7 @@ $this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END])
         window.baseUrl = '/<?= Yii::$app->controller->uniqueId; ?>';
         window.widgets = new Object();
         <?php foreach (Yii::$app->params['ajaxWidgetsData'] as $k => $v): ?>
-        window.widgets['<?= $k ?>'] = <?= Json::encode(app\controllers\AjaxController::recursiveToUtf8($v), 0) ?>;
+        window.widgets['<?= $k ?>'] = <?= Json::encode($v) ?>;
         <?php endforeach; ?>
     </script>
     </body>

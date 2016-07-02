@@ -17,7 +17,7 @@ class DefaultController extends AjaxController {
     const LIMIT = 20;
 
     /**
-     * ðåãèñòðèðóåì âèäæåòû îáðàáàòûâàþùèå àÿêñ çàïðîñû
+     * Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€ÑƒÐµÐ¼ Ð²Ð¸Ð´Ð¶ÐµÑ‚Ñ‹ Ð¾Ð±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÑŽÑ‰Ð¸Ðµ Ð°ÑÐºÑ Ð·Ð°Ð¿Ñ€Ð¾ÑÑ‹
      */
     protected function _registerAjaxWidgets() {
         $this->_registerWidget('app\modules\product\widgets\ProductWidget');
@@ -30,17 +30,17 @@ class DefaultController extends AjaxController {
     public function actionIndex() {
 
         $view = Yii::$app->getView();
-        $view->title = 'Òîâàðû';
+        $view->title = 'Ð¢Ð¾Ð²Ð°Ñ€Ñ‹';
         $view->params['breadcrumbs'][] = $view->title;
 
-        //--- ôèëüòðû è ñîðòèðîâêà
+        //--- Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ñ‹ Ð¸ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ°
         $params = array();
 
-        //--- îïûòû  ñ èìàãèêîì
-        //--- çàïèñûâàåì èñòî÷íèê
+        //--- Ð¾Ð¿Ñ‹Ñ‚Ñ‹  Ñ Ð¸Ð¼Ð°Ð³Ð¸ÐºÐ¾Ð¼
+        //--- Ð·Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ Ð¸ÑÑ‚Ð¾Ñ‡Ð½Ð¸Ðº
 //        ICache::i()->writeSource(3093, 'position', Yii::getAlias('@webroot/iCache/fsdfasdfds.jpeg'));
 
-        /** @var ProductWidget $products òîâàðû */
+        /** @var ProductWidget $products Ñ‚Ð¾Ð²Ð°Ñ€Ñ‹ */
         $products = ProductWidget::widget([
             'productParams' => $params,
             'createPagerParams' => [

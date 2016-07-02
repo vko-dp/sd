@@ -16,7 +16,7 @@ class ProductImage extends ActiveRecord {
 
     const I_CACHE_ALIAS_CONFIG = 'position';
 
-    /** @var bool флаг выборки - true|false админка все/представление только не удаленные */
+    /** @var bool С„Р»Р°Рі РІС‹Р±РѕСЂРєРё - true|false Р°РґРјРёРЅРєР° РІСЃРµ/РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ С‚РѕР»СЊРєРѕ РЅРµ СѓРґР°Р»РµРЅРЅС‹Рµ */
     private static $_fetchAdmin = false;
 
     /**
@@ -29,7 +29,7 @@ class ProductImage extends ActiveRecord {
     }
 
     /**
-     * перегружаем метод чтобы в системе представления не фильтровать постоянно удаленных и неактивных
+     * РїРµСЂРµРіСЂСѓР¶Р°РµРј РјРµС‚РѕРґ С‡С‚РѕР±С‹ РІ СЃРёСЃС‚РµРјРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ РЅРµ С„РёР»СЊС‚СЂРѕРІР°С‚СЊ РїРѕСЃС‚РѕСЏРЅРЅРѕ СѓРґР°Р»РµРЅРЅС‹С… Рё РЅРµР°РєС‚РёРІРЅС‹С…
      * @return $this|\yii\db\ActiveQuery
      */
     public static function find() {
@@ -74,13 +74,13 @@ class ProductImage extends ActiveRecord {
 
         foreach($event->sender->data as &$v) {
 
-            //--- получаем и расширяем алиасы урлов данными для шаблона
+            //--- РїРѕР»СѓС‡Р°РµРј Рё СЂР°СЃС€РёСЂСЏРµРј Р°Р»РёР°СЃС‹ СѓСЂР»РѕРІ РґР°РЅРЅС‹РјРё РґР»СЏ С€Р°Р±Р»РѕРЅР°
             $dataUrlAlias = ICache::i()->getUrlData(self::I_CACHE_ALIAS_CONFIG, $images[$v['id']]['id'], $v['id_catalog'] . '/');
             foreach($dataUrlAlias as &$src) {
                 $src = array(
                     'src' => $src,
-                    'alt' => isset($images[$v['id']]['id']) ? $images[$v['id']]['title'] : 'нет фото',
-                    'title' => isset($images[$v['id']]['id']) ? $images[$v['id']]['title'] : 'нет фото',
+                    'alt' => isset($images[$v['id']]['id']) ? $images[$v['id']]['title'] : 'РЅРµС‚ С„РѕС‚Рѕ',
+                    'title' => isset($images[$v['id']]['id']) ? $images[$v['id']]['title'] : 'РЅРµС‚ С„РѕС‚Рѕ',
                 );
             }
             $v['src'] = array_merge(['id' => isset($images[$v['id']]['id']) ? $images[$v['id']]['id'] : null], $dataUrlAlias);
@@ -89,7 +89,7 @@ class ProductImage extends ActiveRecord {
     }
 
     /**
-     * статичная функция для ICache - возвращает часть пути к изображению
+     * СЃС‚Р°С‚РёС‡РЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ ICache - РІРѕР·РІСЂР°С‰Р°РµС‚ С‡Р°СЃС‚СЊ РїСѓС‚Рё Рє РёР·РѕР±СЂР°Р¶РµРЅРёСЋ
      * @param $id
      * @return string
      */

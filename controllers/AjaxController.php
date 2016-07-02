@@ -20,7 +20,7 @@ abstract class AjaxController extends Controller {
     public $responseData = array();
     public $responseDebug = array();
 
-    /** для регистрации виджетов у которых есть аякс методы */
+    /** РґР»СЏ СЂРµРіРёСЃС‚СЂР°С†РёРё РІРёРґР¶РµС‚РѕРІ Сѓ РєРѕС‚РѕСЂС‹С… РµСЃС‚СЊ Р°СЏРєСЃ РјРµС‚РѕРґС‹ */
     abstract protected function _registerAjaxWidgets();
 
     /**
@@ -44,7 +44,7 @@ abstract class AjaxController extends Controller {
     }
 
     /**
-     * все аякс запросы будут обрабатываться в виджетах
+     * РІСЃРµ Р°СЏРєСЃ Р·Р°РїСЂРѕСЃС‹ Р±СѓРґСѓС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊСЃСЏ РІ РІРёРґР¶РµС‚Р°С…
      */
     public function actionAjax() {
 
@@ -67,102 +67,23 @@ abstract class AjaxController extends Controller {
             }
 
             if(!$widget) {
-                //--- нет обработчика
-                $this->responseData = 'Отсутствует обработчик аякс запроса!';
+                //--- РЅРµС‚ РѕР±СЂР°Р±РѕС‚С‡РёРєР°
+                $this->responseData = 'РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РѕР±СЂР°Р±РѕС‚С‡РёРє Р°СЏРєСЃ Р·Р°РїСЂРѕСЃР°!';
                 $this->responseDebug = Yii::$app->params['ajaxWidgets'];
             } else {
 
-                $request->setBodyParams(self::recursiveToWin1251($data));
+                $request->setBodyParams($data);
                 $widget::$action($this);
             }
 
             $response = Yii::$app->getResponse();
             $response->format = Response::FORMAT_JSON;
             $response->data = array(
-                'debug' =>  self::recursiveToUtf8($this->responseDebug),
+                'debug' =>  $this->responseDebug,
                 'status' => $this->responseStatus,
-                'data' => self::recursiveToUtf8($this->responseData)
+                'data' => $this->responseData
             );
             $response->send();
         }
-    }
-
-    /**
-     * рекурсивно переводим массив из win-1251 в utf8
-     * @param mixed $data
-     * @return array|string
-     */
-    public static function recursiveToUtf8($data) {
-
-        if (is_array($data)) {
-            $newData = array();
-            foreach($data as $key => $value) {
-                $newData[iconv('cp1251', 'UTF-8//IGNORE', $key)] = self::recursiveToUtf8($value);
-            }
-            return $newData;
-
-        } else if (is_string($data)) {
-            return iconv('cp1251', 'UTF-8//IGNORE', $data);
-        } else {
-            return $data;
-        }
-    }
-
-    /**
-     * рекурсивно переводим массив из utf8 в win-1251
-     * @param mixed $data
-     * @return array|string
-     */
-    public static function recursiveToWin1251(&$data){
-
-        if (is_array($data)){
-
-            foreach($data as $key => &$value){
-
-                $newData[self::convertUtfToCp2151($key)] = self::recursiveToWin1251($value);
-            }
-            unset($value);
-
-            return $data;
-        } elseif (is_string($data)){
-
-            return self::convertUtfToCp2151($data);
-        } else {
-
-            return $data;
-        }
-    }
-
-    /**
-     * @static
-     * @param string $str
-     * @return string
-     */
-    public static function convertUtfToCp2151(&$str){
-
-        $str = html_entity_decode(
-            iconv('UTF-8','windows-1251//IGNORE',
-                mb_convert_encoding($str,"HTML-ENTITIES", "UTF-8")
-            )
-            , ENT_COMPAT, "windows-1251");
-        return $str;
-    }
-
-    public static function utf8_unescape($str) {
-        return preg_replace_callback(
-            '/\\\\u([0-9a-fA-F]{4})/',
-            function ($match) {
-                return mb_convert_encoding(pack('H*', $match[1]), 'UTF-8', 'UTF-16BE');
-            },
-            $str
-        );
-    }
-
-    static function jsonToArray ($json) {
-        return self::recursiveToWin1251( json_decode( self::recursiveToUtf8($json), true ) );
-    }
-
-    static function arrayToJson ($array) {
-        return self::recursiveToWin1251( self::utf8_unescape( json_encode( self::recursiveToUtf8($array) ) ) );
     }
 }

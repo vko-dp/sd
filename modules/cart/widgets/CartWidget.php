@@ -15,18 +15,18 @@ use app\models\ajax\AjaxInterface;
 class CartWidget extends Widget implements AjaxInterface {
 
 
-    /** ðåãèñòðèðóåì ïîäêëþ÷åííûå àÿêñ âèäæåòû */
+    /** Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€ÑƒÐµÐ¼ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð½Ñ‹Ðµ Ð°ÑÐºÑ Ð²Ð¸Ð´Ð¶ÐµÑ‚Ñ‹ */
     public static function getRegisterWidgets() {
         return array();
     }
-    /** ðåãèñòðèðóåì àÿêñ îáðàáîò÷èêè âèäæåòà */
+    /** Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€ÑƒÐµÐ¼ Ð°ÑÐºÑ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸ÐºÐ¸ Ð²Ð¸Ð´Ð¶ÐµÑ‚Ð° */
     public static function getAjaxHandlers() {
         return array();
     }
 
     public function run() {
 
-        //--- ïîäêëþ÷àåì ñòèëè è ñêðèïòû
+        //--- Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ ÑÑ‚Ð¸Ð»Ð¸ Ð¸ ÑÐºÑ€Ð¸Ð¿Ñ‚Ñ‹
         $view = $this->getView();
         $view->registerCssFile('@web/css/widgets/cart/top-cart.css');
 

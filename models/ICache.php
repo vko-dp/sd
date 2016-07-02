@@ -1,6 +1,6 @@
 <?php
 /**
- * генерация изображений на лету
+ * РіРµРЅРµСЂР°С†РёСЏ РёР·РѕР±СЂР°Р¶РµРЅРёР№ РЅР° Р»РµС‚Сѓ
  * Created by PhpStorm.
  * User: Varenko Oleg
  * Date: 21.05.2016
@@ -25,7 +25,7 @@ class ICache extends ActiveRecord {
     /** @var ICache  */
     protected static $_instance;
 
-    /** @var array конфиги фоток */
+    /** @var array РєРѕРЅС„РёРіРё С„РѕС‚РѕРє */
     protected $_config = array(
         'no_photo' => array(
             'sourcePath' => '/' . self::CACHE_DIR . '/no_photo',
@@ -151,7 +151,7 @@ class ICache extends ActiveRecord {
     }
 
     /**
-     * разбираем путь переданный в урл
+     * СЂР°Р·Р±РёСЂР°РµРј РїСѓС‚СЊ РїРµСЂРµРґР°РЅРЅС‹Р№ РІ СѓСЂР»
      * @return array
      */
     function _getPathParams() {
@@ -246,7 +246,7 @@ class ICache extends ActiveRecord {
     }
 
     /**
-     * этот метод должен вызываться только при получении изображения
+     * СЌС‚РѕС‚ РјРµС‚РѕРґ РґРѕР»Р¶РµРЅ РІС‹Р·С‹РІР°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РїСЂРё РїРѕР»СѓС‡РµРЅРёРё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
      * @return array
      */
     protected function _parseUrl() {
@@ -272,9 +272,9 @@ class ICache extends ActiveRecord {
             $return['configName'] = $params['configName'];
             $return['pathPart'] = $params['pathPart'];
             $return['config'] = $this->_getConfig($return['configName']);
-            //--- нужно сохранить часть пути файла в конфиг
+            //--- РЅСѓР¶РЅРѕ СЃРѕС…СЂР°РЅРёС‚СЊ С‡Р°СЃС‚СЊ РїСѓС‚Рё С„Р°Р№Р»Р° РІ РєРѕРЅС„РёРі
             $this->_setPathPart($params['configName'], $params['pathPart']);
-            //--- разбираем имя файла
+            //--- СЂР°Р·Р±РёСЂР°РµРј РёРјСЏ С„Р°Р№Р»Р°
             list($part, $return['ext']) = explode('.', $return['fileName']);
             if(!empty($part)) {
                 list($return['id'], $size) = explode('_', $part);
@@ -322,7 +322,7 @@ class ICache extends ActiveRecord {
     }
 
     /**
-     * масштабируем по ширине
+     * РјР°СЃС€С‚Р°Р±РёСЂСѓРµРј РїРѕ С€РёСЂРёРЅРµ
      * @param $srcWidth
      * @param $srcHeight
      * @param $destWidth
@@ -347,7 +347,7 @@ class ICache extends ActiveRecord {
     }
 
     /**
-     * масштабируем по высоте
+     * РјР°СЃС€С‚Р°Р±РёСЂСѓРµРј РїРѕ РІС‹СЃРѕС‚Рµ
      * @param $srcWidth
      * @param $srcHeight
      * @param $destHeight
@@ -372,9 +372,9 @@ class ICache extends ActiveRecord {
     }
 
     /**
-     * Получаем размеры рисунка после масшатабирования
-     * По высоте $destWidth = 0
-     * По ширине $destHeight = 0
+     * РџРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂС‹ СЂРёСЃСѓРЅРєР° РїРѕСЃР»Рµ РјР°СЃС€Р°С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ
+     * РџРѕ РІС‹СЃРѕС‚Рµ $destWidth = 0
+     * РџРѕ С€РёСЂРёРЅРµ $destHeight = 0
      *
      * @static
      * @param $srcWidth
@@ -436,9 +436,9 @@ class ICache extends ActiveRecord {
         return in_array($width . 'x' . $height, $allowedSizes);
     }
 
-    // TODO: сделать возможность добавления подписи для источника
+    // TODO: СЃРґРµР»Р°С‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РґРѕР±Р°РІР»РµРЅРёСЏ РїРѕРґРїРёСЃРё РґР»СЏ РёСЃС‚РѕС‡РЅРёРєР°
     /**
-     * сохраняет изображение-источник
+     * СЃРѕС…СЂР°РЅСЏРµС‚ РёР·РѕР±СЂР°Р¶РµРЅРёРµ-РёСЃС‚РѕС‡РЅРёРє
      * @param $id
      * @param $name
      * @param $filePath
@@ -452,7 +452,7 @@ class ICache extends ActiveRecord {
             return false;
         }
 
-        //--- нужно чтобы был вызван метод возвращающий правильный путь для источника
+        //--- РЅСѓР¶РЅРѕ С‡С‚РѕР±С‹ Р±С‹Р» РІС‹Р·РІР°РЅ РјРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°СЋС‰РёР№ РїСЂР°РІРёР»СЊРЅС‹Р№ РїСѓС‚СЊ РґР»СЏ РёСЃС‚РѕС‡РЅРёРєР°
         $this->_setPathPart($name, null);
 
         $sourcePath = $this->_getSourcePath($id, $name);
@@ -473,7 +473,7 @@ class ICache extends ActiveRecord {
             return false;
         }
 
-        //--- удаляем старый источник и все превьюшки если они есть
+        //--- СѓРґР°Р»СЏРµРј СЃС‚Р°СЂС‹Р№ РёСЃС‚РѕС‡РЅРёРє Рё РІСЃРµ РїСЂРµРІСЊСЋС€РєРё РµСЃР»Рё РѕРЅРё РµСЃС‚СЊ
         $this->_clearDirectory($id, $name, $sourcePath);
 
         $img = Imagick::open($filePath);
@@ -501,7 +501,7 @@ class ICache extends ActiveRecord {
     }
 
     /**
-     * возвращает данные для превью фоток
+     * РІРѕР·РІСЂР°С‰Р°РµС‚ РґР°РЅРЅС‹Рµ РґР»СЏ РїСЂРµРІСЊСЋ С„РѕС‚РѕРє
      * @return array
      * @throws \yii\base\InvalidConfigException
      */
@@ -549,8 +549,8 @@ class ICache extends ActiveRecord {
     }
 
     /**
-     * возвращает массив урл проиндексироавнный алиасами из конфига
-     * если присутствует источник - если нет - заглушки
+     * РІРѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ СѓСЂР» РїСЂРѕРёРЅРґРµРєСЃРёСЂРѕР°РІРЅРЅС‹Р№ Р°Р»РёР°СЃР°РјРё РёР· РєРѕРЅС„РёРіР°
+     * РµСЃР»Рё РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚ РёСЃС‚РѕС‡РЅРёРє - РµСЃР»Рё РЅРµС‚ - Р·Р°РіР»СѓС€РєРё
      * @param $name
      * @param $id
      * @param $pathPart

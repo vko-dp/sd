@@ -5,5 +5,5 @@ return [
     'dsn' => 'mysql:host=localhost;dbname=olegvar_santehdatabase',
     'username' => 'root',
     'password' => '',
-    'charset' => 'cp1251',
+    'charset' => 'utf8',
 ];

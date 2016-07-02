@@ -23,11 +23,11 @@ class Pager extends LinkPager implements AjaxInterface {
 
     public $ajaxPagerParams = array();
 
-    /** ğåãèñòğèğóåì ïîäêëş÷åííûå àÿêñ âèäæåòû */
+    /** Ñ€ĞµĞ³Ğ¸ÑÑ‚Ñ€Ğ¸Ñ€ÑƒĞµĞ¼ Ğ¿Ğ¾Ğ´ĞºĞ»ÑÑ‡ĞµĞ½Ğ½Ñ‹Ğµ Ğ°ÑĞºÑ Ğ²Ğ¸Ğ´Ğ¶ĞµÑ‚Ñ‹ */
     public static function getRegisterWidgets() {
         return array();
     }
-    /** ğåãèñòğèğóåì àÿêñ îáğàáîò÷èêè âèäæåòà */
+    /** Ñ€ĞµĞ³Ğ¸ÑÑ‚Ñ€Ğ¸Ñ€ÑƒĞµĞ¼ Ğ°ÑĞºÑ Ğ¾Ğ±Ñ€Ğ°Ğ±Ğ¾Ñ‚Ñ‡Ğ¸ĞºĞ¸ Ğ²Ğ¸Ğ´Ğ¶ĞµÑ‚Ğ° */
     public static function getAjaxHandlers() {
         return array(
             'getNextPage'
@@ -42,11 +42,11 @@ class Pager extends LinkPager implements AjaxInterface {
         $currentPage = $this->pagination->getPage();
         $pageCount = $this->pagination->getPageCount();
         if($this->isAjaxBtn && !($currentPage >= $pageCount - 1)) {
-            //--- ïîäêëş÷àåì ñòèëè è ñêğèïòû
+            //--- Ğ¿Ğ¾Ğ´ĞºĞ»ÑÑ‡Ğ°ĞµĞ¼ ÑÑ‚Ğ¸Ğ»Ğ¸ Ğ¸ ÑĞºÑ€Ğ¸Ğ¿Ñ‚Ñ‹
             $view = $this->getView();
             $view->registerCssFile('@web/css/widgets/pager.css');
             $view->registerJsFile('@web/js/widgets/pager.js', ['position' => $view::POS_END]);
-            //--- ñîõğàíÿåì ïàğàìåòğû äëÿ ïîäãğóçêè
+            //--- ÑĞ¾Ñ…Ñ€Ğ°Ğ½ÑĞµĞ¼ Ğ¿Ğ°Ñ€Ğ°Ğ¼ĞµÑ‚Ñ€Ñ‹ Ğ´Ğ»Ñ Ğ¿Ğ¾Ğ´Ğ³Ñ€ÑƒĞ·ĞºĞ¸
             Yii::$app->params['ajaxWidgetsData'] = ArrayHelper::merge(Yii::$app->params['ajaxWidgetsData'], [
                 'Pager' => array_merge([
                     'maxButtonCount' => $this->maxButtonCount,
@@ -62,7 +62,7 @@ class Pager extends LinkPager implements AjaxInterface {
                 'class' => 'pagination-ajax-indicator',
                 'alt' => ''
             ]);
-            $btn = Html::tag('span', "{$indicator} ïîêàçàòü åùå", [
+            $btn = Html::tag('span', "{$indicator} Ğ¿Ğ¾ĞºĞ°Ğ·Ğ°Ñ‚ÑŒ ĞµÑ‰Ğµ", [
                 'class' => 'pagination-ajax-btn btn-show-next-page',
             ]);
         } else {
@@ -73,8 +73,8 @@ class Pager extends LinkPager implements AjaxInterface {
     }
 
     /**
-     * îáğàáîò÷èê àÿêñà êíîïêè ïîêàçàòü åùå
-     * äàííûå äîëæåí âåğíóòü ìåòîä âûçûâàşùåãî êëàññà
+     * Ğ¾Ğ±Ñ€Ğ°Ğ±Ğ¾Ñ‚Ñ‡Ğ¸Ğº Ğ°ÑĞºÑĞ° ĞºĞ½Ğ¾Ğ¿ĞºĞ¸ Ğ¿Ğ¾ĞºĞ°Ğ·Ğ°Ñ‚ÑŒ ĞµÑ‰Ğµ
+     * Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ğ´Ğ¾Ğ»Ğ¶ĞµĞ½ Ğ²ĞµÑ€Ğ½ÑƒÑ‚ÑŒ Ğ¼ĞµÑ‚Ğ¾Ğ´ Ğ²Ñ‹Ğ·Ñ‹Ğ²Ğ°ÑÑ‰ĞµĞ³Ğ¾ ĞºĞ»Ğ°ÑÑĞ°
      * @param AjaxController $controller
      */
     public static function getNextPage(AjaxController $controller) {
@@ -91,31 +91,32 @@ class Pager extends LinkPager implements AjaxInterface {
         if(!in_array('getDataForPager', get_class_methods($called))) {
 
             $controller->responseStatus = AjaxController::ERROR_STATUS;
-            $controller->responseData = "Îòñóòñòâóåò ìåòîä: {$called}::getDataForPager()";
+            $controller->responseData = "ĞÑ‚ÑÑƒÑ‚ÑÑ‚Ğ²ÑƒĞµÑ‚ Ğ¼ĞµÑ‚Ğ¾Ğ´: {$called}::getDataForPager()";
+        } else {
+
+            //--- Ğ¿Ğ°Ğ³Ğ¸Ğ½Ğ°Ñ‚Ğ¾Ñ€
+            $pager = new Pagination([
+                'defaultPageSize' => $defaultPageSize,
+                'totalCount' => $totalCount,
+            ]);
+            $pager->setPage($currentPage);
+            $pager->setPageSize($pageSize);
+
+            //--- Ğ¿Ğ¾Ğ»ÑƒÑ‡Ğ°ĞµĞ¼ Ñ…Ñ‚Ğ¼Ğ» ÑÑ‚Ñ€Ğ°Ğ½Ğ¸Ñ†Ñ‹ Ğ¸ Ğ´Ğ¾Ğ¿. Ğ¿Ğ°Ñ€Ğ°Ğ¼ĞµÑ‚Ñ€Ñ‹ ĞµÑĞ»Ğ¸ ĞµÑÑ‚ÑŒ ['html' => '', 'params' => array()]
+            $data = $called::getDataForPager($pager, $params);
+
+            $pagerHtml = Pager::widget([
+                'pagination' => $pager,
+                'maxButtonCount' => $maxButtonCount,
+                'isAjaxBtn' => false
+            ]);
+
+            $controller->responseStatus = AjaxController::OK_STATUS;
+            $controller->responseData = array_merge([
+                'pagerHtml' => preg_replace('|(\s+href\=\"[^\"]*)(ajax)([^\"]*\")|isU', '$1$3', $pagerHtml),
+                'currentPage' => $pager->getPage(),
+                'totalCount' => $pager->getPageCount()
+            ], $data);
         }
-
-        //--- ïàãèíàòîğ
-        $pager = new Pagination([
-            'defaultPageSize' => $defaultPageSize,
-            'totalCount' => $totalCount,
-        ]);
-        $pager->setPage($currentPage);
-        $pager->setPageSize($pageSize);
-
-        //--- ïîëó÷àåì õòìë ñòğàíèöû è äîï. ïàğàìåòğû åñëè åñòü ['html' => '', 'params' => array()]
-        $data = $called::getDataForPager($pager, $params);
-
-        $pagerHtml = Pager::widget([
-            'pagination' => $pager,
-            'maxButtonCount' => $maxButtonCount,
-            'isAjaxBtn' => false
-        ]);
-
-        $controller->responseStatus = AjaxController::OK_STATUS;
-        $controller->responseData = array_merge([
-            'pagerHtml' => preg_replace('|(\s+href\=\"[^\"]*)(ajax)([^\"]*\")|isU', '$1$3', $pagerHtml),
-            'currentPage' => $pager->getPage(),
-            'totalCount' => $pager->getPageCount()
-        ], $data);
     }
 }

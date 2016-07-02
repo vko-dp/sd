@@ -14,7 +14,7 @@ class Module extends AjaxModule {
 
     public $layout = 'main';
 
-    /** @var array хтмл виджетов */
+    /** @var array С…С‚РјР» РІРёРґР¶РµС‚РѕРІ */
     protected $_widgets = array();
 
     public function init() {

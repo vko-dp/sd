@@ -15,9 +15,9 @@ class Product extends ActiveRecord {
 
     const FETCH_ALL_POSITION = 'fetch_all_position_ready';
 
-    /** @var bool ôëàã âûáîğêè - true|false àäìèíêà âñå/ïğåäñòàâëåíèå òîëüêî íå óäàëåííûå */
+    /** @var bool Ñ„Ğ»Ğ°Ğ³ Ğ²Ñ‹Ğ±Ğ¾Ñ€ĞºĞ¸ - true|false Ğ°Ğ´Ğ¼Ğ¸Ğ½ĞºĞ° Ğ²ÑĞµ/Ğ¿Ñ€ĞµĞ´ÑÑ‚Ğ°Ğ²Ğ»ĞµĞ½Ğ¸Ğµ Ñ‚Ğ¾Ğ»ÑŒĞºĞ¾ Ğ½Ğµ ÑƒĞ´Ğ°Ğ»ĞµĞ½Ğ½Ñ‹Ğµ */
     private static $_fetchAdmin = false;
-    /** @var array äåôîëüòíàÿ ñîğòèğîâêà */
+    /** @var array Ğ´ĞµÑ„Ğ¾Ğ»ÑŒÑ‚Ğ½Ğ°Ñ ÑĞ¾Ñ€Ñ‚Ğ¸Ñ€Ğ¾Ğ²ĞºĞ° */
     protected $_defaultSorter = array(
         'name_position' => 'asc'
     );
@@ -34,7 +34,7 @@ class Product extends ActiveRecord {
     }
 
     /**
-     * ïåğåãğóæàåì ìåòîä ÷òîáû â ñèñòåìå ïğåäñòàâëåíèÿ íå ôèëüòğîâàòü ïîñòîÿííî óäàëåííûõ è íåàêòèâíûõ
+     * Ğ¿ĞµÑ€ĞµĞ³Ñ€ÑƒĞ¶Ğ°ĞµĞ¼ Ğ¼ĞµÑ‚Ğ¾Ğ´ Ñ‡Ñ‚Ğ¾Ğ±Ñ‹ Ğ² ÑĞ¸ÑÑ‚ĞµĞ¼Ğµ Ğ¿Ñ€ĞµĞ´ÑÑ‚Ğ°Ğ²Ğ»ĞµĞ½Ğ¸Ñ Ğ½Ğµ Ñ„Ğ¸Ğ»ÑŒÑ‚Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒ Ğ¿Ğ¾ÑÑ‚Ğ¾ÑĞ½Ğ½Ğ¾ ÑƒĞ´Ğ°Ğ»ĞµĞ½Ğ½Ñ‹Ñ… Ğ¸ Ğ½ĞµĞ°ĞºÑ‚Ğ¸Ğ²Ğ½Ñ‹Ñ…
      * @return $this|\yii\db\ActiveQuery
      */
     public static function find() {
@@ -62,12 +62,12 @@ class Product extends ActiveRecord {
 
         $query = $this->find();
 
-        //--- ôèëüòğàöèÿ
+        //--- Ñ„Ğ¸Ğ»ÑŒÑ‚Ñ€Ğ°Ñ†Ğ¸Ñ
         if(isset($params['filter'])) {
             $query->where($params['filter']);
         }
 
-        //--- ñîğòèğîâêà
+        //--- ÑĞ¾Ñ€Ñ‚Ğ¸Ñ€Ğ¾Ğ²ĞºĞ°
         $params['sorter'] = isset($params['sorter']) ?  $params['sorter'] : $this->_defaultSorter;
         $query->orderBy($params['sorter']);
 
@@ -77,9 +77,9 @@ class Product extends ActiveRecord {
             ->asArray()
             ->all();
 
-        //--- óñòàíàâëèâàåì öåíû â ñîîòâåòñòâèè ñ êóğñàìè âàëşò
+        //--- ÑƒÑÑ‚Ğ°Ğ½Ğ°Ğ²Ğ»Ğ¸Ğ²Ğ°ĞµĞ¼ Ñ†ĞµĞ½Ñ‹ Ğ² ÑĞ¾Ğ¾Ñ‚Ğ²ĞµÑ‚ÑÑ‚Ğ²Ğ¸Ğ¸ Ñ ĞºÑƒÑ€ÑĞ°Ğ¼Ğ¸ Ğ²Ğ°Ğ»ÑÑ‚
         $this->on(self::FETCH_ALL_POSITION, [new Currency(), 'preparePosition']);
-        //--- äîáàâëÿåì ãëàâíîå ôîòî
+        //--- Ğ´Ğ¾Ğ±Ğ°Ğ²Ğ»ÑĞµĞ¼ Ğ³Ğ»Ğ°Ğ²Ğ½Ğ¾Ğµ Ñ„Ğ¾Ñ‚Ğ¾
         $this->on(self::FETCH_ALL_POSITION, [new ProductImage(), 'preparePosition']);
         $this->trigger(self::FETCH_ALL_POSITION);
         return $this->data;

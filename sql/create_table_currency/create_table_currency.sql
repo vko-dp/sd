@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS `santeh_currency` (
-  `id` int(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ключ',
-  `name` varchar(20) NOT NULL COMMENT 'название например USD',
-  `nick` varchar(20) DEFAULT NULL COMMENT 'ник например $',
-  `rate` float unsigned DEFAULT '1' COMMENT 'текущий курс',
+  `id` int(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'РєР»СЋС‡',
+  `name` varchar(20) NOT NULL COMMENT 'РЅР°Р·РІР°РЅРёРµ РЅР°РїСЂРёРјРµСЂ USD',
+  `nick` varchar(20) DEFAULT NULL COMMENT 'РЅРёРє РЅР°РїСЂРёРјРµСЂ $',
+  `rate` float unsigned DEFAULT '1' COMMENT 'С‚РµРєСѓС‰РёР№ РєСѓСЂСЃ',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=cp1251 COMMENT='курсы валют' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251 COMMENT='РєСѓСЂСЃС‹ РІР°Р»СЋС‚' AUTO_INCREMENT=1 ;
 
 INSERT INTO `santeh_currency` VALUES
   (null, 'USD', '$', 25),

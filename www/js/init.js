@@ -1,4 +1,4 @@
-// ñîçäàåì îêíî ìîäåëèðóþùåå ìîäàëüíîñòü âñïëûâàþùåãî îêíà
+// ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ Ð¾ÐºÐ½Ð¾ Ð¼Ð¾Ð´ÐµÐ»Ð¸Ñ€ÑƒÑŽÑ‰ÐµÐµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ Ð²ÑÐ¿Ð»Ñ‹Ð²Ð°ÑŽÑ‰ÐµÐ³Ð¾ Ð¾ÐºÐ½Ð°
 $.fn.overlay=function() {
     
     var el=$(this);
@@ -19,7 +19,7 @@ $.fn.overlay_white=function() {
     return this;
 };
 
-// ðàçìåùåíèå âñïëûâàþùåãî îêíà ïî öåíòðó îêíà
+// Ñ€Ð°Ð·Ð¼ÐµÑ‰ÐµÐ½Ð¸Ðµ Ð²ÑÐ¿Ð»Ñ‹Ð²Ð°ÑŽÑ‰ÐµÐ³Ð¾ Ð¾ÐºÐ½Ð° Ð¿Ð¾ Ñ†ÐµÐ½Ñ‚Ñ€Ñƒ Ð¾ÐºÐ½Ð°
 $.fn.centering = function () {
     this.css("position","absolute");
     this.css("top", ( $(window).height() - this.outerHeight() ) / 4  + "px");
@@ -27,13 +27,13 @@ $.fn.centering = function () {
     return this;
 };
 
-// âåðîÿòíî äëÿ ñîçäàíèÿ ïëàâàþùåãî ôðåéìà
+// Ð²ÐµÑ€Ð¾ÑÑ‚Ð½Ð¾ Ð´Ð»Ñ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ Ð¿Ð»Ð°Ð²Ð°ÑŽÑ‰ÐµÐ³Ð¾ Ñ„Ñ€ÐµÐ¹Ð¼Ð°
 if ($.fn.bgIframe == undefined) {
     
     $.fn.bgIframe = function() {return this; };
 }
 
-// ïîëó÷àåì àáñîëþòíûå êîîðäèíàòû ýëåìåíòà (Õ, Ó)
+// Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ñ‹Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° (Ð¥, Ð£)
 function _getAbsolutePosition(el) {
 
     var r = { x: el.offsetLeft, y: el.offsetTop };
@@ -45,7 +45,7 @@ function _getAbsolutePosition(el) {
     return r;
 }
 
-// ïîëó÷àåì àáñîëþòíûå êîîðäèíàòû ýëåìåíòà (Õ, Ó)
+// Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ñ‹Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° (Ð¥, Ð£)
 function getAbsolutePosition(el) {
 
     var coord = _getAbsolutePosition(el),
@@ -59,13 +59,13 @@ function getAbsolutePosition(el) {
     return coord;
 }
 
-// ïîëó÷àåì àáñîëþòíûå êîîðäèíàòû ýëåìåíòà (Õ, Ó)
+// Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ñ‹Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° (Ð¥, Ð£)
 function getAbsolutePositionRelative(el) {
 
     return _getAbsolutePosition(el);
 }
 
-// Ôóíêöèÿ âîçâðàùàåò çíà÷åíèå ïàðàìåòðà èç query string
+// Ð¤ÑƒÐ½ÐºÑ†Ð¸Ñ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° Ð¸Ð· query string
 $.urlParam = function(name){
     
     var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -74,10 +74,10 @@ $.urlParam = function(name){
 };
 
 /**
- * Ñêëîíåíèå ñóùåñòâèòåëüíûõ ïîñëå ÷èñëèòåëüíûõ
+ * Ð¡ÐºÐ»Ð¾Ð½ÐµÐ½Ð¸Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… Ð¿Ð¾ÑÐ»Ðµ Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ…
  * 
  * @example 
- * declOfNum(12, ['êîììåíòàðèé','êîììåíòàðèÿ','êîììåíòàðèåâ']); //"12 êîììåíòàðèåâ"
+ * declOfNum(12, ['ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¹','ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ñ','ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸ÐµÐ²']); //"12 ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸ÐµÐ²"
  *
  **/
 function declOfNum($number, $titles){  
@@ -87,19 +87,19 @@ function declOfNum($number, $titles){
 }
 
 
-//îïðåäåëåíà ëè ïåðåìåííàÿ
+//Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð° Ð»Ð¸ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð°Ñ
 function isDefined (mixed) {
     
     return typeof(mixed) != 'undefined';
 }
 
-//ÿâëÿåòñÿ ëè ôóíêöèåé ïåðåìåííàÿ
+//ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ð»Ð¸ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÐµÐ¹ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð°Ñ
 function isFunction (mixed) {
     
     return isDefined(mixed) && mixed.constructor == Function;
 }
 
-//êîíâåðòèðóåì îáúåêò â ìàññèâ
+//ÐºÐ¾Ð½Ð²ÐµÑ€Ñ‚Ð¸Ñ€ÑƒÐµÐ¼ Ð¾Ð±ÑŠÐµÐºÑ‚ Ð² Ð¼Ð°ÑÑÐ¸Ð²
 function objToArray (obj) {
                 
     var array = $.map(obj, function(k, v) {
@@ -109,7 +109,7 @@ function objToArray (obj) {
     return array;
 }
 
-// ïîâòîðÿåò ñèìâîë îïðåäåëåííîå êîëè÷åñòâî ðàç
+// Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÑÐµÑ‚ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ€Ð°Ð·
 String.prototype.repeat = function( num ){
     
     return new Array( num + 1 ).join( this );
@@ -137,14 +137,14 @@ Array.prototype.min = function() {
 };
 
 /**
- * Òðàññèðîâêà äàííûõ
+ * Ð¢Ñ€Ð°ÑÑÐ¸Ñ€Ð¾Ð²ÐºÐ° Ð´Ð°Ð½Ð½Ñ‹Ñ…
  * @param data
  */
 function trace(data) {
 
     if(typeof console != "undefined"){
         try { console.log(data) } catch (e) {
-            //ò.ê. ôóíöèÿ alert ó íàñ ïåðåîïðåäåëåíà, îíà ïðèíèìàåò òîëüêî ñòðîêè
+            //Ñ‚.Ðº. Ñ„ÑƒÐ½Ñ†Ð¸Ñ alert Ñƒ Ð½Ð°Ñ Ð¿ÐµÑ€ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð°, Ð¾Ð½Ð° Ð¿Ñ€Ð¸Ð½Ð¸Ð¼Ð°ÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ ÑÑ‚Ñ€Ð¾ÐºÐ¸
             alert(data || data.message || '');
         }
     } else {
@@ -153,7 +153,7 @@ function trace(data) {
 }
 
 /**
- * ïåðåîïðåäåëÿåì ìåòîä val, äëÿ òîãî ÷òîáû îí àäåêâàòíî îáðàáàòûâàë ñèòóàöèè ñ placeholder'îì
+ * Ð¿ÐµÑ€ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÐ¼ Ð¼ÐµÑ‚Ð¾Ð´ val, Ð´Ð»Ñ Ñ‚Ð¾Ð³Ð¾ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¾Ð½ Ð°Ð´ÐµÐºÐ²Ð°Ñ‚Ð½Ð¾ Ð¾Ð±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°Ð» ÑÐ¸Ñ‚ÑƒÐ°Ñ†Ð¸Ð¸ Ñ placeholder'Ð¾Ð¼
  */
 $.fn.standartVal = $.fn.val;
 $.fn.val = function(value) {
@@ -178,8 +178,8 @@ $.fn.val = function(value) {
 };
 
 /**
- * Ñîçäàåì jquery-radio äëÿ ýëåìåíòà e 
- * Â êà÷åñòâå ýëåìåíòà e - ïðèñûëàåì .voting
+ * Ð¡Ð¾Ð·Ð´Ð°ÐµÐ¼ jquery-radio Ð´Ð»Ñ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° e 
+ * Ð’ ÐºÐ°Ñ‡ÐµÑÑ‚Ð²Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° e - Ð¿Ñ€Ð¸ÑÑ‹Ð»Ð°ÐµÐ¼ .voting
  */
 function applyRadio(e) {
     
@@ -193,7 +193,7 @@ function applyRadio(e) {
 }
 
 /**
- * ïðèìåíÿåì ïðèñóòñòâèå ïëåéñõîëäåðà, äëÿ áðàóçåðîâ íå îòíîñÿùèõñÿ ê webkit
+ * Ð¿Ñ€Ð¸Ð¼ÐµÐ½ÑÐµÐ¼ Ð¿Ñ€Ð¸ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð»ÐµÐ¹ÑÑ…Ð¾Ð»Ð´ÐµÑ€Ð°, Ð´Ð»Ñ Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ð¾Ð² Ð½Ðµ Ð¾Ñ‚Ð½Ð¾ÑÑÑ‰Ð¸Ñ…ÑÑ Ðº webkit
  * @param e
  */
 function applyPlaceholder(e) {
@@ -236,7 +236,7 @@ function applyPlaceholder(e) {
 }
 
 /**
- * ïðèìåíÿåì ïðèñóòñòâèå ïîëåé ñ ïëåéñõîëäåðàìè â ôîðìå, äëÿ áðàóçåðîâ íå îòíîñÿùèõñÿ ê webkit
+ * Ð¿Ñ€Ð¸Ð¼ÐµÐ½ÑÐµÐ¼ Ð¿Ñ€Ð¸ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð¾Ð»ÐµÐ¹ Ñ Ð¿Ð»ÐµÐ¹ÑÑ…Ð¾Ð»Ð´ÐµÑ€Ð°Ð¼Ð¸ Ð² Ñ„Ð¾Ñ€Ð¼Ðµ, Ð´Ð»Ñ Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ð¾Ð² Ð½Ðµ Ð¾Ñ‚Ð½Ð¾ÑÑÑ‰Ð¸Ñ…ÑÑ Ðº webkit
  * @param e
  */
 function applyFormPlaceholderSubmit(e) {
@@ -272,7 +272,7 @@ new function($) {
 }(jQuery);
 
 /**
- * Ôóíêöèÿ ïðåîáðàçîâàíèÿ ôîðìû â ìàññèâ
+ * Ð¤ÑƒÐ½ÐºÑ†Ð¸Ñ Ð¿Ñ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ñ Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð² Ð¼Ð°ÑÑÐ¸Ð²
  */
 (function($){
     $.fn.toJSON = function(options){
@@ -345,12 +345,12 @@ new function($) {
 
 
 /**
- * íàñëåäóåì class1 îò class2
- * íóæíî ÷òîáû âñå ìåòîäû/ñâîéñòâà êëàññîâ áûëè îïèñàíû â prototype, â ïðîòèâíîì ñëó÷àå ðàáîòàòü íå áóäåò èëè áóäåò íå òàê êàê íàäî
- * òàêæå ïðîïèñûâàåòñÿ ñâîéñòâî parent äëÿ äîñòóïà ê ìåòîäàì ïðåäêà, ýòî àêòóàëüíî êîãäà isRewrite = false, è ìåòîäû ïîòîìêà ìîãóò îòëè÷àòüñÿ îò ìåòîäîâ ïðåäêà
+ * Ð½Ð°ÑÐ»ÐµÐ´ÑƒÐµÐ¼ class1 Ð¾Ñ‚ class2
+ * Ð½ÑƒÐ¶Ð½Ð¾ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð²ÑÐµ Ð¼ÐµÑ‚Ð¾Ð´Ñ‹/ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð° ÐºÐ»Ð°ÑÑÐ¾Ð² Ð±Ñ‹Ð»Ð¸ Ð¾Ð¿Ð¸ÑÐ°Ð½Ñ‹ Ð² prototype, Ð² Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¾Ð¼ ÑÐ»ÑƒÑ‡Ð°Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ñ‚ÑŒ Ð½Ðµ Ð±ÑƒÐ´ÐµÑ‚ Ð¸Ð»Ð¸ Ð±ÑƒÐ´ÐµÑ‚ Ð½Ðµ Ñ‚Ð°Ðº ÐºÐ°Ðº Ð½Ð°Ð´Ð¾
+ * Ñ‚Ð°ÐºÐ¶Ðµ Ð¿Ñ€Ð¾Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÑ‚ÑÑ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð¾ parent Ð´Ð»Ñ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ðº Ð¼ÐµÑ‚Ð¾Ð´Ð°Ð¼ Ð¿Ñ€ÐµÐ´ÐºÐ°, ÑÑ‚Ð¾ Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð¾ ÐºÐ¾Ð³Ð´Ð° isRewrite = false, Ð¸ Ð¼ÐµÑ‚Ð¾Ð´Ñ‹ Ð¿Ð¾Ñ‚Ð¾Ð¼ÐºÐ° Ð¼Ð¾Ð³ÑƒÑ‚ Ð¾Ñ‚Ð»Ð¸Ñ‡Ð°Ñ‚ÑŒÑÑ Ð¾Ñ‚ Ð¼ÐµÑ‚Ð¾Ð´Ð¾Ð² Ð¿Ñ€ÐµÐ´ÐºÐ°
  * @param childClass
  * @param parentClass
- * @param isRewrite ïî óìîë÷àíèþ true, åñëè ïîñòàâèòü false òî óæå ñóùåñòâóþùèå ñâîéñòà íå áóäóò ïåðåçàïèñûâàòüñÿ
+ * @param isRewrite Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ true, ÐµÑÐ»Ð¸ Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ false Ñ‚Ð¾ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÑŽÑ‰Ð¸Ðµ ÑÐ²Ð¾Ð¹ÑÑ‚Ð° Ð½Ðµ Ð±ÑƒÐ´ÑƒÑ‚ Ð¿ÐµÑ€ÐµÐ·Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°Ñ‚ÑŒÑÑ
  */
 function extendsClass(childClass, parentClass, isRewrite) {
 
@@ -370,7 +370,7 @@ function extendsClass(childClass, parentClass, isRewrite) {
 }
 
 /**
- * âîçâðàùàåì òîëüêî óíèêàëüíûå ýëåìåíòû ìàññèâà
+ * Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ ÑƒÐ½Ð¸ÐºÐ°Ð»ÑŒÐ½Ñ‹Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ Ð¼Ð°ÑÑÐ¸Ð²Ð°
  * @param array
  */
 arrayUnique = function(array) {
@@ -391,36 +391,36 @@ arrayUnique = function(array) {
 }
 
 /**
- * ôîðìàòèðîâàíèå äàòû
+ * Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð´Ð°Ñ‚Ñ‹
  * @param {string} params
  * @param {string} datetime
  */
 function dateRus(params, datetime) {
     
     var rusMonths = {
-        1:  ['ÿíâàðü',   'ÿíâàðÿ'],
-        2:  ['ôåâðàëü',  'ôåâðàëÿ'],
-        3:  ['ìàðò',     'ìàðòà'],
-        4:  ['àïðåëü',   'àïðåëÿ'],
-        5:  ['ìàé',      'ìàÿ'],
-        6:  ['èþíü',     'èþíÿ'],
-        7:  ['èþëü',     'èþëÿ'],
-        8:  ['àâãóñò',   'àâãóñòà'],
-        9:  ['ñåíòÿáðü', 'ñåíòÿáðÿ'],
-        10: ['îêòÿáðü',  'îêòÿáðÿ'],
-        11: ['íîÿáðü',   'íîÿáðÿ'],
-        12: ['äåêàáðü',  'äåêàáðÿ']
+        1:  ['ÑÐ½Ð²Ð°Ñ€ÑŒ',   'ÑÐ½Ð²Ð°Ñ€Ñ'],
+        2:  ['Ñ„ÐµÐ²Ñ€Ð°Ð»ÑŒ',  'Ñ„ÐµÐ²Ñ€Ð°Ð»Ñ'],
+        3:  ['Ð¼Ð°Ñ€Ñ‚',     'Ð¼Ð°Ñ€Ñ‚Ð°'],
+        4:  ['Ð°Ð¿Ñ€ÐµÐ»ÑŒ',   'Ð°Ð¿Ñ€ÐµÐ»Ñ'],
+        5:  ['Ð¼Ð°Ð¹',      'Ð¼Ð°Ñ'],
+        6:  ['Ð¸ÑŽÐ½ÑŒ',     'Ð¸ÑŽÐ½Ñ'],
+        7:  ['Ð¸ÑŽÐ»ÑŒ',     'Ð¸ÑŽÐ»Ñ'],
+        8:  ['Ð°Ð²Ð³ÑƒÑÑ‚',   'Ð°Ð²Ð³ÑƒÑÑ‚Ð°'],
+        9:  ['ÑÐµÐ½Ñ‚ÑÐ±Ñ€ÑŒ', 'ÑÐµÐ½Ñ‚ÑÐ±Ñ€Ñ'],
+        10: ['Ð¾ÐºÑ‚ÑÐ±Ñ€ÑŒ',  'Ð¾ÐºÑ‚ÑÐ±Ñ€Ñ'],
+        11: ['Ð½Ð¾ÑÐ±Ñ€ÑŒ',   'Ð½Ð¾ÑÐ±Ñ€Ñ'],
+        12: ['Ð´ÐµÐºÐ°Ð±Ñ€ÑŒ',  'Ð´ÐµÐºÐ°Ð±Ñ€Ñ']
     };
     
-    //ñäåëàíî òàê ïîòîìó ÷òî new Date('Y-m-d H:i:s') íå õî÷åò ïðèíèìàòü
+    //ÑÐ´ÐµÐ»Ð°Ð½Ð¾ Ñ‚Ð°Ðº Ð¿Ð¾Ñ‚Ð¾Ð¼Ñƒ Ñ‡Ñ‚Ð¾ new Date('Y-m-d H:i:s') Ð½Ðµ Ñ…Ð¾Ñ‡ÐµÑ‚ Ð¿Ñ€Ð¸Ð½Ð¸Ð¼Ð°Ñ‚ÑŒ
     var datetimeBlocks = datetime.split('.')[0].split(' '),
         dateBlocks = datetimeBlocks[0].split('-'),
         timeBlocks = datetimeBlocks[1].split(':'),
-        date = new Date(dateBlocks[0], dateBlocks[1] - 1 /* íóìåðàöèÿ ìåñÿöåâ íà÷èíàåòñÿ ñ 0*/, dateBlocks[2], timeBlocks[0], timeBlocks[1], timeBlocks[2]),
+        date = new Date(dateBlocks[0], dateBlocks[1] - 1 /* Ð½ÑƒÐ¼ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¼ÐµÑÑÑ†ÐµÐ² Ð½Ð°Ñ‡Ð¸Ð½Ð°ÐµÑ‚ÑÑ Ñ 0*/, dateBlocks[2], timeBlocks[0], timeBlocks[1], timeBlocks[2]),
 
         autofillToTwoSignNumber = function(number){
 
-            //èççà êîíâåðòàöèè number ñòàíåò ñòðîêîé
+            //Ð¸Ð·Ð·Ð° ÐºÐ¾Ð½Ð²ÐµÑ€Ñ‚Ð°Ñ†Ð¸Ð¸ number ÑÑ‚Ð°Ð½ÐµÑ‚ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹
             number = '' + number;
 
             if (number.length == 1) {
@@ -430,21 +430,21 @@ function dateRus(params, datetime) {
             return number;
         },
 
-        //âîâçðàùàåì áîëåå ïîíÿòíóþ ïîëüçîâàòåëþ äàòó
-        //ôóíêöèþ îïðåäåëèë âíóòðè, ò.ê. îíà áåññìûñëåííà â êîíòåêñòå ñàìîãî îáúåêòà
+        //Ð²Ð¾Ð²Ð·Ñ€Ð°Ñ‰Ð°ÐµÐ¼ Ð±Ð¾Ð»ÐµÐµ Ð¿Ð¾Ð½ÑÑ‚Ð½ÑƒÑŽ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŽ Ð´Ð°Ñ‚Ñƒ
+        //Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ð» Ð²Ð½ÑƒÑ‚Ñ€Ð¸, Ñ‚.Ðº. Ð¾Ð½Ð° Ð±ÐµÑÑÐ¼Ñ‹ÑÐ»ÐµÐ½Ð½Ð° Ð² ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ðµ ÑÐ°Ð¼Ð¾Ð³Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°
         getUserFriendlyDay = function(date){
-            var dateMs = date.getTime(), //â ìèëëèñåêóíäàõ, 0.001 ñåêóíäû
+            var dateMs = date.getTime(), //Ð² Ð¼Ð¸Ð»Ð»Ð¸ÑÐµÐºÑƒÐ½Ð´Ð°Ñ…, 0.001 ÑÐµÐºÑƒÐ½Ð´Ñ‹
             curMs = new Date(),
             todayMs = new Date(curMs.getFullYear(), curMs.getMonth(), curMs.getDate()).getTime();
             
             if (dateMs >= todayMs && dateMs <= (todayMs + 86400000)) {
-                return 'Ñåãîäíÿ';
+                return 'Ð¡ÐµÐ³Ð¾Ð´Ð½Ñ';
             } else if (dateMs >= (todayMs - 86400000) && dateMs < todayMs) {
-                return 'Â÷åðà';
+                return 'Ð’Ñ‡ÐµÑ€Ð°';
             } else {
                 return autofillToTwoSignNumber(date.getDate()) + ' ' +
                        rusMonths[date.getMonth() + 1][1] + ' ' +
-                       autofillToTwoSignNumber(date.getFullYear()) + ' ãîäà';
+                       autofillToTwoSignNumber(date.getFullYear()) + ' Ð³Ð¾Ð´Ð°';
             }
         };
     
@@ -477,7 +477,7 @@ function wordwrap( str, int_width, str_break, cut ) {	// Wraps a string to a giv
 }
 
 /**
- * ×àñòè÷íûé ïîèñê ïî ýëåìåíòàì îáúåêòà
+ * Ð§Ð°ÑÑ‚Ð¸Ñ‡Ð½Ñ‹Ð¹ Ð¿Ð¾Ð¸ÑÐº Ð¿Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°Ð¼ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°
  *
  * @param findStr
  * @param objData
@@ -489,7 +489,7 @@ function search(findStr, objData, onlyFirst, linkData){
 
     var resArr,
         transform = function(str){
-            return str.toLowerCase().replace('¸', 'e').replace('é', 'è');
+            return str.toLowerCase().replace('Ñ‘', 'e').replace('Ð¹', 'Ð¸');
         },
         compare = function(a){
 
@@ -502,7 +502,7 @@ function search(findStr, objData, onlyFirst, linkData){
             }
         };
 
-    // ïðîâåðÿåì åå ðàçìåð
+    // Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ ÐµÐµ Ñ€Ð°Ð·Ð¼ÐµÑ€
     if (!findStr.length){
 
         return objData;
@@ -543,7 +543,7 @@ function search(findStr, objData, onlyFirst, linkData){
         });
     }
 
-    // óðà, âûäàåì òîëüêî òî ÷òî ñîîòâåòñâóåò
+    // ÑƒÑ€Ð°, Ð²Ñ‹Ð´Ð°ÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ‚Ð¾ Ñ‡Ñ‚Ð¾ ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÐ²ÑƒÐµÑ‚
     return resArr;
 };
 
@@ -610,8 +610,8 @@ function copyUrlToClipboard(el) {
 }
 
 /**
- * Ïîñûëàåì ñòàíäàðòíûé AJAX-çàïðîñ. Ïî âûïîëíåíèþ âûçûâàþòñÿ completeHandler, åñëè ïðîèçîøëà îøèáêà - errorHandler.
- * @param params Îáúåêò ñ îïèñàíèåì çàïðîñà. îáÿçàòåëüíî äîëæíî áûòü óêàçàíî ïîëå action, îñòàëüíûå îïöèîíàëüíûå.
+ * ÐŸÐ¾ÑÑ‹Ð»Ð°ÐµÐ¼ ÑÑ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ñ‹Ð¹ AJAX-Ð·Ð°Ð¿Ñ€Ð¾Ñ. ÐŸÐ¾ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸ÑŽ Ð²Ñ‹Ð·Ñ‹Ð²Ð°ÑŽÑ‚ÑÑ completeHandler, ÐµÑÐ»Ð¸ Ð¿Ñ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ° - errorHandler.
+ * @param params ÐžÐ±ÑŠÐµÐºÑ‚ Ñ Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸ÐµÐ¼ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°. Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ ÑƒÐºÐ°Ð·Ð°Ð½Ð¾ Ð¿Ð¾Ð»Ðµ action, Ð¾ÑÑ‚Ð°Ð»ÑŒÐ½Ñ‹Ðµ Ð¾Ð¿Ñ†Ð¸Ð¾Ð½Ð°Ð»ÑŒÐ½Ñ‹Ðµ.
  *
  * params = {
  *          action: "someAction",

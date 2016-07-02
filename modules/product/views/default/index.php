@@ -1,3 +1,3 @@
-<h1>Товары (<?= $totalCount ?>)</h1>
+<h1>РўРѕРІР°СЂС‹ (<?= $totalCount ?>)</h1>
 
 <?= $products ?>

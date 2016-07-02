@@ -7,9 +7,9 @@ use yii\web\IdentityInterface;
 
 class User extends ActiveRecord implements IdentityInterface {
 
-    /** @var array äàííûå àâòîğèçîâàííîãî ïîëüçîâàòåëÿ */
+    /** @var array Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ğ°Ğ²Ñ‚Ğ¾Ñ€Ğ¸Ğ·Ğ¾Ğ²Ğ°Ğ½Ğ½Ğ¾Ğ³Ğ¾ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»Ñ */
     private static $_user = array();
-    /** @var bool ôëàã âûáîğêè - true|false àäìèíêà âñå ïîëüçîâàòåëè/ïğåäñòàâëåíèå òîëüêî íå óäàëåííûå ñ àêòèâèğîâàííûì ïğîôèëåì */
+    /** @var bool Ñ„Ğ»Ğ°Ğ³ Ğ²Ñ‹Ğ±Ğ¾Ñ€ĞºĞ¸ - true|false Ğ°Ğ´Ğ¼Ğ¸Ğ½ĞºĞ° Ğ²ÑĞµ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»Ğ¸/Ğ¿Ñ€ĞµĞ´ÑÑ‚Ğ°Ğ²Ğ»ĞµĞ½Ğ¸Ğµ Ñ‚Ğ¾Ğ»ÑŒĞºĞ¾ Ğ½Ğµ ÑƒĞ´Ğ°Ğ»ĞµĞ½Ğ½Ñ‹Ğµ Ñ Ğ°ĞºÑ‚Ğ¸Ğ²Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ½Ñ‹Ğ¼ Ğ¿Ñ€Ğ¾Ñ„Ğ¸Ğ»ĞµĞ¼ */
     private static $_fetchAdmin = false;
 
     public $username = '';
@@ -31,7 +31,7 @@ class User extends ActiveRecord implements IdentityInterface {
     }
 
     /**
-     * ïåğåãğóæàåì ìåòîä ÷òîáû â ñèñòåìå ïğåäñòàâëåíèÿ íå ôèëüòğîâàòü ïîñòîÿííî óäàëåííûõ è íåàêòèâíûõ
+     * Ğ¿ĞµÑ€ĞµĞ³Ñ€ÑƒĞ¶Ğ°ĞµĞ¼ Ğ¼ĞµÑ‚Ğ¾Ğ´ Ñ‡Ñ‚Ğ¾Ğ±Ñ‹ Ğ² ÑĞ¸ÑÑ‚ĞµĞ¼Ğµ Ğ¿Ñ€ĞµĞ´ÑÑ‚Ğ°Ğ²Ğ»ĞµĞ½Ğ¸Ñ Ğ½Ğµ Ñ„Ğ¸Ğ»ÑŒÑ‚Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒ Ğ¿Ğ¾ÑÑ‚Ğ¾ÑĞ½Ğ½Ğ¾ ÑƒĞ´Ğ°Ğ»ĞµĞ½Ğ½Ñ‹Ñ… Ğ¸ Ğ½ĞµĞ°ĞºÑ‚Ğ¸Ğ²Ğ½Ñ‹Ñ…
      * @return $this|\yii\db\ActiveQuery
      */
     public static function find() {
@@ -43,7 +43,7 @@ class User extends ActiveRecord implements IdentityInterface {
     }
 
 
-    /** @var array àêòèâèğîâàííûå çàïèñè ïîëüçîâàòåëåé */
+    /** @var array Ğ°ĞºÑ‚Ğ¸Ğ²Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ½Ñ‹Ğµ Ğ·Ğ°Ğ¿Ğ¸ÑĞ¸ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ĞµĞ¹ */
     protected $_activeUser = array(
         'activated' => 'yes'
     );
