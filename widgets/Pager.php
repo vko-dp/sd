@@ -16,6 +16,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\controllers\AjaxController;
 use app\models\ajax\AjaxInterface;
+use app\assets\widgets\PagerAsset;
 
 class Pager extends LinkPager implements AjaxInterface {
 
@@ -42,10 +43,10 @@ class Pager extends LinkPager implements AjaxInterface {
         $currentPage = $this->pagination->getPage();
         $pageCount = $this->pagination->getPageCount();
         if($this->isAjaxBtn && !($currentPage >= $pageCount - 1)) {
+
             //--- подключаем стили и скрипты
-            $view = $this->getView();
-            $view->registerCssFile('@web/css/widgets/pager.css');
-            $view->registerJsFile('@web/js/widgets/pager.js', ['position' => $view::POS_END]);
+            PagerAsset::register($this->getView());
+
             //--- сохраняем параметры для подгрузки
             Yii::$app->params['ajaxWidgetsData'] = ArrayHelper::merge(Yii::$app->params['ajaxWidgetsData'], [
                 'Pager' => array_merge([

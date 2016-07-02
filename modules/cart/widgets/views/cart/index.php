@@ -1,3 +1,10 @@
+<?php
+
+use app\assets\widgets\CartAsset;
+
+CartAsset::register($this);
+?>
+
 <div class="top-cart">
     <ul style="list-style: none;">
         <li>

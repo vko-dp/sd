@@ -26,10 +26,6 @@ class CartWidget extends Widget implements AjaxInterface {
 
     public function run() {
 
-        //--- подключаем стили и скрипты
-        $view = $this->getView();
-        $view->registerCssFile('@web/css/widgets/cart/top-cart.css');
-
         return $this->render('cart/index', []);
     }
 }

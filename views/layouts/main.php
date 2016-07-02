@@ -11,7 +11,6 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
-$this->registerJsFile('@web/js/init.js', ['position' => \yii\web\View::POS_END]);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
