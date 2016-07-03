@@ -20,5 +20,7 @@ class CartAsset extends AppAsset {
         'css/widgets/cart/top-cart.css',
     ];
 
-    public $js = [];
+    public $js = [
+        'js/modules/cart/widgets/cart.js'
+    ];
 }

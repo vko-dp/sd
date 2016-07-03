@@ -48,7 +48,7 @@ class Pager extends LinkPager implements AjaxInterface {
             PagerAsset::register($this->getView());
 
             //--- сохраняем параметры для подгрузки
-            Yii::$app->params['ajaxWidgetsData'] = ArrayHelper::merge(Yii::$app->params['ajaxWidgetsData'], [
+            Yii::$app->params['addAjaxWidgetData']([
                 'Pager' => array_merge([
                     'maxButtonCount' => $this->maxButtonCount,
                     'defaultPageSize' => $this->pagination->defaultPageSize,
@@ -58,6 +58,7 @@ class Pager extends LinkPager implements AjaxInterface {
                     'totalCount' => intval($this->pagination->totalCount)
                 ], $this->ajaxPagerParams)
             ]);
+
             $indicator = Html::tag('img', '', [
                 'src' => Url::to('@web/i/pager-stat-btn.gif'),
                 'class' => 'pagination-ajax-indicator',

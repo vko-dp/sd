@@ -35,7 +35,7 @@ class Product extends ActiveRecord {
 
     /**
      * перегружаем метод чтобы в системе представления не фильтровать постоянно удаленных и неактивных
-     * @return $this|\yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public static function find() {
         $find = parent::find();
