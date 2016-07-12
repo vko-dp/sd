@@ -28,3 +28,4 @@ phpunit.phar
 
 # dump
 dump.txt
+/www/dump.txt
