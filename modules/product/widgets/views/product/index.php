@@ -16,9 +16,11 @@ use yii\helpers\Html;
 
 <?php foreach ($products as $value): ?>
     <li>
-        <?= Html::tag('img', '', $value['src']['sq60']) ?>&nbsp;
-        <?= Html::decode($value['name_position'] . "(" . $value['price_position'] . ")") . " | ID: " . $value['src']['id'] ?>:
-        <?= Yii::$app->formatter->asDate($value['create_date']) ?>
+        <?= isset($value['src']['sq60']) ? Html::tag('img', '', $value['src']['sq60']) . '&nbsp;' : ''; ?>
+        <?= Html::decode($value['name_position']); ?><br />
+        ID : <?= $value['id']; ?><br />
+        цена : <?= isset($value['price_currency']) ? number_format($value['price_currency'], 2, '.', ' ') . " {$value['currency_nick']}" : $value['price_position'] . " {$value['valuta']}"; ?><br />
+        дата : <?= Yii::$app->formatter->asDate($value['create_date'], 'd.m.Y'); ?><br />
     </li>
 <?php endforeach; ?>
 

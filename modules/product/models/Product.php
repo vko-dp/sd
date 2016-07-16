@@ -9,11 +9,9 @@ namespace app\modules\product\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-
+use app\modules\product\behavior\ProductBehavior;
 
 class Product extends ActiveRecord {
-
-    const FETCH_ALL_POSITION = 'fetch_all_position_ready';
 
     /** @var bool флаг выборки - true|false админка все/представление только не удаленные */
     private static $_fetchAdmin = false;
@@ -22,7 +20,17 @@ class Product extends ActiveRecord {
         'name_position' => 'asc'
     );
 
+    /** @var array полученные данные */
     public $data = array();
+
+    /**
+     * @return array
+     */
+    public function behaviors() {
+        return [
+            'ProductBehavior' => ProductBehavior::className()
+        ];
+    }
 
     /**
      * @param bool|true $param
@@ -53,6 +61,15 @@ class Product extends ActiveRecord {
     }
 
     /**
+     * @return array
+     */
+    public static function primaryKey(){
+
+        return ['id'];
+    }
+
+
+    /**
      * @param int $limit
      * @param int $offset
      * @param array $params
@@ -64,7 +81,7 @@ class Product extends ActiveRecord {
 
         //--- фильтрация
         if(isset($params['filter'])) {
-            $query->where($params['filter']);
+            $query->andWhere($params['filter']);
         }
 
         //--- сортировка
@@ -76,12 +93,9 @@ class Product extends ActiveRecord {
             ->indexBy('id')
             ->asArray()
             ->all();
+        //--- расширяемся данными
+        $this->trigger(ProductBehavior::FETCH_ALL_POSITION);
 
-        //--- устанавливаем цены в соответствии с курсами валют
-        $this->on(self::FETCH_ALL_POSITION, [new Currency(), 'preparePosition']);
-        //--- добавляем главное фото
-        $this->on(self::FETCH_ALL_POSITION, [new ProductImage(), 'preparePosition']);
-        $this->trigger(self::FETCH_ALL_POSITION);
         return $this->data;
     }
 

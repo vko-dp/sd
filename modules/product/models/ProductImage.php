@@ -9,8 +9,6 @@ namespace app\modules\product\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\base\Event;
-use app\models\ICache;
 
 class ProductImage extends ActiveRecord {
 
@@ -30,7 +28,7 @@ class ProductImage extends ActiveRecord {
 
     /**
      * перегружаем метод чтобы в системе представления не фильтровать постоянно удаленных и неактивных
-     * @return $this|\yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public static function find() {
         $find = parent::find();
@@ -45,6 +43,13 @@ class ProductImage extends ActiveRecord {
     public static function tableName() {
         return 'santeh_img_position';
     }
+    /**
+     * @return array
+     */
+    public static function primaryKey(){
+
+        return ['id'];
+    }
 
     /**
      * @param array $ids
@@ -53,7 +58,7 @@ class ProductImage extends ActiveRecord {
     public function getByProductIds(array $ids) {
 
         $data = $this->find()
-            ->where(array(
+            ->andWhere(array(
                 'id_position' => $ids,
                 'main_img' => 'yes'
             ))
@@ -61,31 +66,6 @@ class ProductImage extends ActiveRecord {
             ->asArray()
             ->all();
         return $data;
-    }
-
-    /**
-     * @param Event $event
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function preparePosition(Event $event) {
-
-        $ids = array_keys($event->sender->data);
-        $images = $this->getByProductIds($ids);
-
-        foreach($event->sender->data as &$v) {
-
-            //--- получаем и расширяем алиасы урлов данными для шаблона
-            $dataUrlAlias = ICache::i()->getUrlData(self::I_CACHE_ALIAS_CONFIG, $images[$v['id']]['id'], $v['id_catalog'] . '/');
-            foreach($dataUrlAlias as &$src) {
-                $src = array(
-                    'src' => $src,
-                    'alt' => isset($images[$v['id']]['id']) ? $images[$v['id']]['title'] : 'нет фото',
-                    'title' => isset($images[$v['id']]['id']) ? $images[$v['id']]['title'] : 'нет фото',
-                );
-            }
-            $v['src'] = array_merge(['id' => isset($images[$v['id']]['id']) ? $images[$v['id']]['id'] : null], $dataUrlAlias);
-        }
-        unset($v);
     }
 
     /**
